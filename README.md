@@ -36,6 +36,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`UWP-PORTING-SIDELOADING-HARDENING.md`](UWP-PORTING-SIDELOADING-HARDENING.md) — dev-mode/UWP/porting hardening.
 - [`OBSERVED-PLATFORM.md`](OBSERVED-PLATFORM.md) — sanitized platform facts.
 - [`DEVICE-PORTAL-ANON-EXPOSURE.md`](DEVICE-PORTAL-ANON-EXPOSURE.md) — redacted anonymous WDP endpoint/data map.
+- [`BUILD-PACKAGING-TRUST-BOUNDARIES.md`](BUILD-PACKAGING-TRUST-BOUNDARIES.md) — build/deploy script trust-boundary notes.
 - [`HOST-MODULE-REVIEW.md`](HOST-MODULE-REVIEW.md) — steam_client/ui/swapchain static review.
 - [`GUEST-BRIDGE-REVIEW.md`](GUEST-BRIDGE-REVIEW.md) — guest/bridge trust-boundary static review.
 - [`EVIDENCE-PACK-MANIFEST.md`](EVIDENCE-PACK-MANIFEST.md) — shareable file manifest with hashes/redaction notes.
