@@ -38,6 +38,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`DEVICE-PORTAL-ANON-EXPOSURE.md`](DEVICE-PORTAL-ANON-EXPOSURE.md) — redacted anonymous WDP endpoint/data map.
 - [`BUILD-PACKAGING-TRUST-BOUNDARIES.md`](BUILD-PACKAGING-TRUST-BOUNDARIES.md) — build/deploy script trust-boundary notes.
 - [`HOST-MODULE-REVIEW.md`](HOST-MODULE-REVIEW.md) — steam_client/ui/swapchain static review.
+- [`BOOT-CHAINLOAD-REGISTRY.md`](BOOT-CHAINLOAD-REGISTRY.md) — CreateProcessW chainload hook + registry hive boundary.
 - [`BRIDGE-PATH-CANONICALIZATION.md`](BRIDGE-PATH-CANONICALIZATION.md) — guest->host VFS resolver review.
 - [`GAME-DUMP-ENTITLEMENT-DEFENSIVE.md`](GAME-DUMP-ENTITLEMENT-DEFENSIVE.md) — why dumping is walled + defensive content model.
 - [`DEV-CONTAINER-API-MAP.md`](DEV-CONTAINER-API-MAP.md) — guest .def export inventory / emulation boundary map.
