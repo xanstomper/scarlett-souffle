@@ -38,3 +38,9 @@ Source `src/host/webxfer.cpp` shows no auth checks before handlers for: `/api/st
 
 ## Added finding
 - **SPY-014** (high, INFOLEAK/CWE-200): anonymous WDP GETs exposed `/ext/xbox/info` (OsVersion/DevMode/OsEdition/ConsoleType + device identifiers redacted), `/api/networking/ipconfig` (4 adapters), `/api/app/packagemanager/packages` (74 installed packages). Read-only; sensitive identifiers redacted in public artifacts.
+
+## Added finding
+- **SPY-015** (high, INFOLEAK/CWE-200): anonymous GET `/ext/user` returned user profile presence/fields (identifiers redacted publicly). Read-only.
+
+## Source review
+- Added `SOURCE-REVIEW-FINDINGS.md` with line-number evidence for unauth handlers in `webxfer.cpp`; no command-exec primitives found by simple grep, but missing auth remains dominant risk.

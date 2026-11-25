@@ -1,6 +1,6 @@
 # SPYDERMONKEY War Report — xbox-devmode
 
-_generated 2026-11-25T10:56:05.531609+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
+_generated 2026-11-25T10:59:43.974727+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
 
 ## Authorization & scope
 
@@ -12,9 +12,9 @@ _generated 2026-11-25T10:56:05.531609+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 ## Executive summary
 
-- **14** finding(s) registered · **12** confirmed with 3-gate evidence
-- severity mix: high=4, info=3, medium=7
-- risk score: **57.0** · cvss avg 5.04 · max 8.0
+- **15** finding(s) registered · **13** confirmed with 3-gate evidence
+- severity mix: high=5, info=3, medium=7
+- risk score: **65.0** · cvss avg 5.23 · max 8.0
 - **0** chain candidate(s) — low findings combining into high-impact chains
 - **0** detection rule(s) mirrored (kage)
 - harvest crown rows: 0 (shukaku pricing)
@@ -24,7 +24,7 @@ _generated 2026-11-25T10:56:05.531609+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 | technique | findings | confirmed |
 |---|---|---|
-| T-UNKNOWN | 8 | 7 |
+| T-UNKNOWN | 9 | 8 |
 | T1046 | 1 | 1 |
 | T1068 | 4 | 3 |
 | T1190 | 1 | 1 |
@@ -49,6 +49,7 @@ _4 technique(s) touched by the engagement's registered findings_
 | SPY-012 | high | 8.0 | CONFIRMED | INFOLEAK | Unauthenticated Windows Device Portal info disclosure (/api/os/info, /ext/settings) | https://10.0.0.23:11443/api/os/info, /ext/settings |
 | SPY-013 | medium | 5.5 | CONFIRMED | AUTHZ | Unauthenticated UPnP RenderingControl SOAP query (GetVolume) on Xbox DeviceHost | http://10.0.0.23:2869/upnphost/udhisapi.dll?control=uuid:b0b712e4-7a75-436b-9373-b24e61bb0daa+urn:upnp-org:serviceId:RenderingControl |
 | SPY-014 | high | 8.0 | CONFIRMED | INFOLEAK | Unauthenticated Device Portal leaks device identifiers, network config, and package inventory | https://10.0.0.23:11443/ext/xbox/info, /api/networking/ipconfig, /api/app/packagemanager/packages |
+| SPY-015 | high | 8.0 | CONFIRMED | INFOLEAK | Unauthenticated Device Portal user enumeration/disclosure (/ext/user) | https://10.0.0.23:11443/ext/user |
 
 ### SPY-001 — SMBv1 absent — MS17-010/EternalBlue lane cleared [CONFIRMED · info · conf 0.95]
 - class: RECON · asset: 10.0.0.23:445
@@ -121,6 +122,11 @@ control: differential is not specific (hypothesis-grade)
 - evidence quality: 3-gate
 - proof: baseline: Device Portal device identity/network/package management endpoints expected to require authentication; attack: anonymous HTTPS GET with no credentials to /ext/xbox/info, /api/networking/ipconfig, /api/app/packagemanager/packages; diff: HTTP 200 responses returned OsVersion/DevMode/OsEdition/ConsoleType and device identifiers (ConsoleId, DeviceId, SerialNumber, DevkitCertificateExpirationTime present; values redacted in public report), 4 network adapters config, and 74 installed packages including dev tools/apps. Read-only GETs only; no mutation.
 
+### SPY-015 — Unauthenticated Device Portal user enumeration/disclosure (/ext/user) [CONFIRMED · high · conf 0.95]
+- class: INFOLEAK · asset: https://10.0.0.23:11443/ext/user · CWE CWE-200
+- evidence quality: 3-gate
+- proof: baseline: Device Portal user/account endpoint expected to require authentication; attack: anonymous HTTPS GET https://10.0.0.23:11443/ext/user with no credentials; diff: HTTP 200 returned Users array (1 user) exposing account presence and profile fields including UserId, EmailAddress, Gamertag, XboxUserId, AgeGroup, AutoSignIn, SignedIn; sensitive identifiers redacted in public artifacts. Read-only GET only.
+
 ## Phase coverage
 
 - completed   scope_analysis (barbican)
@@ -139,7 +145,7 @@ control: differential is not specific (hypothesis-grade)
 
 ## Evidence integrity
 
-- ledger rows: 14 · signed: 14 · unsigned: 0
+- ledger rows: 15 · signed: 15 · unsigned: 0
 - integrity errors: 0
 
 ## Closeout
