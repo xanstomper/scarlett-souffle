@@ -9,7 +9,7 @@ Purpose: prioritize high-value tests for dev community/UWP/porting/exploit resea
 | WDP anonymous GET map | curl GET only | 200/404 matrix, redacted data | Done |
 | UPnP description/SCPD fetch | GET XML | device/services/actions | Done |
 | UPnP read-only SOAP query | GetVolume/GetMute/GetTransportInfo | SOAP response | Done (SPY-013) |
-| Tiramisu unauth GET map | status/games/settings/logs/list-files/cover/qr | info exposure evidence | Done |
+| dev dashboard unauth GET map | status/games/settings/logs/list-files/cover/qr | info exposure evidence | Done |
 | Static source review | grep/read | auth/path/args trust boundaries | Done (webxfer/main/guest/trt/cover_art) |
 
 ## B. Reversible, low-risk (needs explicit per-action go-ahead)
@@ -31,7 +31,7 @@ Purpose: prioritize high-value tests for dev community/UWP/porting/exploit resea
 
 ## D. Lab-only exploit research (owned hardware, isolated network)
 - Fuzz UPnP SOAP/XML parsing (udhisapi.dll surface) for crashes/memory corruption.
-- Fuzz Tiramisu zip upload/extract, JSON config parsing, URL fetch handling.
+- Fuzz dev dashboard zip upload/extract, JSON config parsing, URL fetch handling.
 - Audit guest/host bridge for argument injection, path canonicalization, memory safety.
 - Evaluate WDP auth boundaries and CSRF on authenticated sessions (with test creds).
 

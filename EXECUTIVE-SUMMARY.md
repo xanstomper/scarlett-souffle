@@ -7,7 +7,7 @@
 
 ## What matters
 
-The dev kit exposed multiple management surfaces without effective access controls. The most serious confirmed issue was an unauthenticated Tiramisu control-plane flow: a PIN was exposed in status data and could be exchanged for a control token (SPY-002, HIGH 8.0). The token was revoked immediately; no input was injected.
+The dev kit exposed multiple management surfaces without effective access controls. The most serious confirmed issue was an unauthenticated dev dashboard control-plane flow: a PIN was exposed in status data and could be exchanged for a control token (SPY-002, HIGH 8.0). The token was revoked immediately; no input was injected.
 
 Additional confirmed exposures included anonymous Device Portal leaks of OS/device/user/package data (SPY-012/014/015, HIGH), unauthenticated SSRF (SPY-007), unauthenticated settings mutation (SPY-011, reversible), unauthenticated file-manifest and export disclosure (SPY-010/003/004), and unauthenticated UPnP read-only control queries (SPY-013).
 

@@ -4,8 +4,8 @@ Walls: NO-GAIN, no value theft, no persistence. **No game dumping or decryption 
 
 ## Observed structure (code-observed only)
 - Steam depot content in `steam_client.cpp` uses BCrypt AES-256 decrypt (ECB key block + CBC body), filename encryption flag, Adler-32/chunk verification, and a depot decryption key gated on license proof (`2137-2174`).
-- Tiramisu mounts disc images read-only and materializes them to a host cache for guest reads (`vfs.cpp`, `bridge_kernel32.cpp`).
-- Saves/backups export via WDP/Tiramisu endpoints (SPY-003) — sensitive, auth-gated in hardened builds.
+- dev dashboard mounts disc images read-only and materializes them to a host cache for guest reads (`vfs.cpp`, `bridge_kernel32.cpp`).
+- Saves/backups export via WDP/dev dashboard endpoints (SPY-003) — sensitive, auth-gated in hardened builds.
 
 ## Why dumping is outside the gate
 - Copying/decrypting game content = value theft (NO-GAIN violation), possible copyright/ToS breach, and third-party harm.

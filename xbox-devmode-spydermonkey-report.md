@@ -5,7 +5,7 @@ _generated 2026-11-25T10:59:43.974727+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 ## Authorization & scope
 
 - engagement: **xbox-devmode**
-- objective: owner-authorized validation-only recon of my Xbox Series in dev mode at 10.0.0.23; identify exploitable surfaces useful to the tiramisu project; no gain, no persistence
+- objective: owner-authorized validation-only recon of my Xbox Series in dev mode at 10.0.0.23; identify exploitable surfaces useful to the dev dashboard project; no gain, no persistence
 - in-scope entries: 1 · deny entries: 0
 - expires: 2026-12-25T09:14:02.554768+00:00
 - rules: {'max_rate_rps': 10, 'passive_first': True, 'no_destructive': True, 'require_scope_check': True, 'allow_lab': True}
@@ -100,7 +100,7 @@ control: differential is not specific (hypothesis-grade)
 ### SPY-010 — Unauthenticated game file-manifest disclosure via /api/list-files [CONFIRMED · medium · conf 0.95]
 - class: INFOLEAK · asset: http://10.0.0.23:9127/api/list-files?game=hello · CWE CWE-200
 - evidence quality: 3-gate
-- proof: baseline: game directory contents are operator-private; attack: anonymous GET /api/list-files?game=hello with no auth; diff: HTTP 200 JSON listing 9 files with rel paths and sizes including .tiramisu/aliases.json (95B), .tiramisu/autopilot.json (54B), .tiramisu/profile.json (405B), .tiramisu/shims.txt (72B), .tiramisu/xb_imports.csv (105B), .tiramisu/xb_imports.json (189B), .tiramisu/xb_profile.json (110B), guest_hello.exe (3072B), tiramisu.profile.ini (255B); endpoint also accepts other game names and is CORS-wildcarded
+- proof: baseline: game directory contents are operator-private; attack: anonymous GET /api/list-files?game=hello with no auth; diff: HTTP 200 JSON listing 9 files with rel paths and sizes including .dev dashboard/aliases.json (95B), .dev dashboard/autopilot.json (54B), .dev dashboard/profile.json (405B), .dev dashboard/shims.txt (72B), .dev dashboard/xb_imports.csv (105B), .dev dashboard/xb_imports.json (189B), .dev dashboard/xb_profile.json (110B), guest_hello.exe (3072B), dev dashboard.profile.ini (255B); endpoint also accepts other game names and is CORS-wildcarded
 
 ### SPY-011 — Unauthenticated host settings tampering via /api/settings [CONFIRMED · medium · conf 0.95]
 - class: AUTHZ · asset: http://10.0.0.23:9127/api/settings · CWE CWE-306 · WSTG WSTG-ATHZ-01 · ATT&CK T1068

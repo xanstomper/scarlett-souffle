@@ -2,7 +2,7 @@
 
 Read-only observations from Scarlett Soufflé campaign against declared estate `10.0.0.23`. Sensitive values redacted.
 
-## Tiramisu `http://10.0.0.23:9127`
+## dev dashboard `http://10.0.0.23:9127`
 | Endpoint | Method | Auth | Observed | Notes |
 |---|---|---|---:|---|
 | `/api/status` | GET | none | 200 | Leaks `control_code`, running game, upload/error state |

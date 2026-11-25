@@ -22,7 +22,7 @@ check_http() {
   printf '%-55s %s bytes=%s\n' "$label" "$code" "$size"
 }
 
-echo "[Tiramisu 9127]"
+echo "[dev dashboard 9127]"
 for p in / /api/status /games /api/settings /api/logs /api/list-files?game=hello /api/steam/library /api/qr.svg; do
   check_http "http://$TARGET:9127$p" "GET $p"
 done

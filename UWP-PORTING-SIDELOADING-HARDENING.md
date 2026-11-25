@@ -5,8 +5,8 @@ Evidence-grounded guidance for dev community. Not legal advice; not a jailbreak 
 ## Observed context (this estate)
 
 - Xbox Series S/SystemOS dev kit, Dev Mode "Universal Windows App Devkit", Sandbox `XDKS.1`, DefaultApp Dev Home (WDP anonymous exposure, redacted).
-- Tiramisu dashboard exposed game inventory, compat labels (x64 D3D11 Ready, x64 Windows Ready, x86 32-bit JIT), per-game `.tiramisu` manifests/profiles/shims/import mappings.
-- Missing auth on Tiramisu management endpoints enabled info disclosure, SSRF, settings mutation, and control pairing proof.
+- dev dashboard dashboard exposed game inventory, compat labels (x64 D3D11 Ready, x64 Windows Ready, x86 32-bit JIT), per-game `.dev dashboard` manifests/profiles/shims/import mappings.
+- Missing auth on dev dashboard management endpoints enabled info disclosure, SSRF, settings mutation, and control pairing proof.
 
 ## UWP/dev-mode risks
 
@@ -17,7 +17,7 @@ Evidence-grounded guidance for dev community. Not legal advice; not a jailbreak 
 
 ## Porting/shim layer risks
 
-- `.tiramisu` profiles/shims/import mappings are useful for compatibility but reveal internals. Protect them as build artifacts.
+- `.dev dashboard` profiles/shims/import mappings are useful for compatibility but reveal internals. Protect them as build artifacts.
 - Command-line args/config files are trust boundaries. Sanitize and allowlist; do not pass raw dashboard input to runtime command lines without policy.
 - File upload/extract paths must be canonicalized and auth-gated even when path sanitization exists.
 

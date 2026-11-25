@@ -1,9 +1,9 @@
 # UWP / Sideloading / Porting Checklist (Dev Community)
 
-Evidence-grounded by Scarlett Soufflé observations (Tiramisu dashboard, WDP, UPnP). Use for defensive hardening and authorized lab testing.
+Evidence-grounded by Scarlett Soufflé observations (dev dashboard dashboard, WDP, UPnP). Use for defensive hardening and authorized lab testing.
 
 ## Build & packaging
-- [ ] Treat `.tiramisu` manifests/profiles/shims/import mappings as sensitive build artifacts.
+- [ ] Treat `.dev dashboard` manifests/profiles/shims/import mappings as sensitive build artifacts.
 - [ ] Validate app manifests, capabilities, and signing before sideload.
 - [ ] Keep test/dev packages separate from personal accounts and retail environments.
 - [ ] Remove debug endpoints/log verbosity from release builds.

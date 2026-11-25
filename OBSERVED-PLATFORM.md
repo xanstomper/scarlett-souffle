@@ -34,6 +34,6 @@
 - Device XML: `MediaRenderer:1`, `friendlyName XBOX`, `modelName Xbox One`, `manufacturer Microsoft Corporation`, `X_hardwareId VEN_0125&DEV_0002&REV_0001`.
 - TLS 11443: `TLSv1.3 TLS_AES_256_GCM_SHA384`, issuer `CN=Microsoft Windows Web Management (Test) (XBOX)`.
 
-## Tiramisu runtime observed
+## dev dashboard runtime observed
 - `http://10.0.0.23:9127` dashboard up; games include x64 D3D11 Ready, x64 Windows Ready, x86 32-bit (JIT) compat labels.
-- Per-game `.tiramisu` manifests/profiles/shims/import mappings observed via unauth list-files.
+- Per-game `.dev dashboard` manifests/profiles/shims/import mappings observed via unauth list-files.

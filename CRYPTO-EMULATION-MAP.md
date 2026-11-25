@@ -1,6 +1,6 @@
 # Crypto & Emulation Surface Map (read-only static review)
 
-Source: local Tiramisu tree (`src/guest`, `src/host`, `src/trt`). Documentation for dev/UWP porting and authorized research. **No decryption of protected content, no game dumping, no key extraction performed** — NO-GAIN wall.
+Source: local dev dashboard tree (`src/guest`, `src/host`, `src/trt`). Documentation for dev/UWP porting and authorized research. **No decryption of protected content, no game dumping, no key extraction performed** — NO-GAIN wall.
 
 ## Crypto / encryption surfaces (code-observed)
 
@@ -29,7 +29,7 @@ Source: local Tiramisu tree (`src/guest`, `src/host`, `src/trt`). Documentation 
 | `src/guest/guest_shell.c:140-141` | ShellExecuteExW fails named | Shell escape boundary |
 
 ## Container/jailbreak-vector framing (documented, not proven)
-- **Observed boundaries:** no host cert store, no child process/shell, registry/filesystem shims, limited host API exports (`TiramisuHostQueryBuild/LogU32`), UWP app-container model.
+- **Observed boundaries:** no host cert store, no child process/shell, registry/filesystem shims, limited host API exports (`dev dashboardHostQueryBuild/LogU32`), UWP app-container model.
 - **Not proven:** no escape, no kernel/hypervisor bypass, no entitlement bypass, no persistence. Hypotheses are in `KNOWN-UNPROVEN-HYPOTHESES.md`.
 - **Game dumping/value theft:** outside walls. This doc maps structure only; it does not extract or decrypt game content.
 

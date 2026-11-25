@@ -6,7 +6,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 
 ## Key confirmed findings (13 confirmed / 15 rows)
 
-- **SPY-002 HIGH 8.0** — Unauth Tiramisu control PIN disclosure -> Bearer pairing -> control session (revoked, no input injected).
+- **SPY-002 HIGH 8.0** — Unauth dev dashboard control PIN disclosure -> Bearer pairing -> control session (revoked, no input injected).
 - **SPY-012 HIGH** — Unauth WDP `/api/os/info` + `/ext/settings` leak OS build/platform/sandbox/dev settings/user presence.
 - **SPY-014 HIGH** — Unauth WDP leaks device identifiers (redacted), network config, 74 installed packages.
 - **SPY-015 HIGH** — Unauth WDP `/ext/user` user enumeration/profile fields (identifiers redacted).
@@ -75,4 +75,4 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 
 ## Method
 
-Read-only recon, source review of local Tiramisu `webxfer.cpp`, and minimal reversible 3-gate proofs. No destructive endpoint testing (launch/delete/restore/upload) performed. UPnP mutating SOAP actions not invoked.
+Read-only recon, source review of local dev dashboard `webxfer.cpp`, and minimal reversible 3-gate proofs. No destructive endpoint testing (launch/delete/restore/upload) performed. UPnP mutating SOAP actions not invoked.

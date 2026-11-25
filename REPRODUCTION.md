@@ -2,7 +2,7 @@
 
 All tests below were run against `10.0.0.23` in a declared validation-only scope. Do **not** run against systems you do not own/authorize. Reversible tests were restored immediately.
 
-## SPY-002 — Tiramisu control PIN disclosure + pairing (HIGH 8.0)
+## SPY-002 — dev dashboard control PIN disclosure + pairing (HIGH 8.0)
 ```bash
 # Baseline: observe PIN in unauth status
 curl -s http://10.0.0.23:9127/api/status | jq .control_code

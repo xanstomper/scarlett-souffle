@@ -1,6 +1,6 @@
 # Boot Chainload Hook & Registry Emulation (static review)
 
-Source: `src/trt/bridge_kernel32.cpp` (~3051, 3290-3350), `src/trt/bridge_reg.cpp`, local Tiramisu tree. Read-only. Hypotheses only; no escape/exec proven.
+Source: `src/trt/bridge_kernel32.cpp` (~3051, 3290-3350), `src/trt/bridge_reg.cpp`, local dev dashboard tree. Read-only. Hypotheses only; no escape/exec proven.
 
 ## CreateProcessW paths (guest boundary)
 1. **Harness-modeled child:** creates synthetic process object, logs "console would deny", returns TRUE with pid — no real child on console.

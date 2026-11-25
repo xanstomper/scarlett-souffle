@@ -1,6 +1,6 @@
 # Endpoint Inventory (observed, read-only unless noted)
 
-## 10.0.0.23:9127 — Tiramisu Dashboard (HTTP, CORS *)
+## 10.0.0.23:9127 — dev dashboard Dashboard (HTTP, CORS *)
 | Endpoint | Method(s) observed | Auth | Notes |
 |---|---|---|---|
 | `/` | GET | none | Dashboard HTML |

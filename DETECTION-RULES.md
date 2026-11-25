@@ -1,6 +1,6 @@
 # Defender Detection Rules (mapped to observed artifacts)
 
-Defensive signals for dev kits running Tiramisu/WDP/UPnP on LAN. Tune to your environment; validate in lab.
+Defensive signals for dev kits running dev dashboard/WDP/UPnP on LAN. Tune to your environment; validate in lab.
 
 ## Network/HTTP signals
 
@@ -19,7 +19,7 @@ Defensive signals for dev kits running Tiramisu/WDP/UPnP on LAN. Tune to your en
 
 ## Host/log signals
 
-- Tiramisu logs showing unexpected `POST /api/controls/pair`, `download-url`, `settings saved from web dashboard`, upload/restore/delete/launch.
+- dev dashboard logs showing unexpected `POST /api/controls/pair`, `download-url`, `settings saved from web dashboard`, upload/restore/delete/launch.
 - WDP audit logs for anonymous access to `/ext/*` and package manager endpoints.
 - New outbound connections from console/dev kit to unusual internal/external URLs after `download-url` requests.
 

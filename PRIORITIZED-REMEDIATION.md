@@ -14,7 +14,7 @@ Priority-ordered fixes based on confirmed Scarlett Soufflé findings. Goal: redu
    - Rotate any exposed dev credentials/sessions; review account presence on shared kits.
 
 ## P1 — High (24-72 hours)
-3. **AuthZ + CSRF on all Tiramisu mutation endpoints (SPY-011, code-reviewed surface).**
+3. **AuthZ + CSRF on all dev dashboard mutation endpoints (SPY-011, code-reviewed surface).**
    - Require auth on `/api/settings`, `/api/config`, `/api/launch`, `/api/stop`, `/api/rescan`, `/api/upload-file`, `/upload/*.zip`, `/api/upload-complete`, `/api/restore-saves`, `/api/delete`, `/api/game/<n>` DELETE, `/api/cover` PUT.
    - Add CSRF tokens/origin checks for browser UI.
 

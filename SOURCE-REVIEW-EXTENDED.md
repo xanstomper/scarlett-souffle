@@ -1,13 +1,13 @@
-# Extended Source Review — Tiramisu (read-only, local)
+# Extended Source Review — dev dashboard (read-only, local)
 
-Scope: static review of local workspace `/home/jewboy420/tiramisu/src` (not executed against target beyond already-documented read-only/reversible tests). Purpose: dev-community hardening and vuln-class mapping.
+Scope: static review of local workspace `/home/jewboy420/dev dashboard/src` (not executed against target beyond already-documented read-only/reversible tests). Purpose: dev-community hardening and vuln-class mapping.
 
 ## 1) Unauth config -> launch-args chain (code-observed, not actively exploited)
 
 **Evidence:**
-- `src/host/webxfer.cpp:2528+` handles `POST /api/config/<name>` with no auth check; validates `exe` via `sanitize_rel_path`, writes `tiramisu_exe.txt`, `steam_appid.txt`, `tiramisu_args.txt`, `tiramisu_input.txt` (2544-2578 shown).
-- Args write: CR/LF replaced by space, then written directly to `tiramisu_args.txt` (2563-2566). No allowlist/quoting policy.
-- `src/host/main.cpp:1918-1944` reads `tiramisu_args.txt` and passes to `trt_bridge_set_cmd_args`; if absent, falls back to profile `launch_args`.
+- `src/host/webxfer.cpp:2528+` handles `POST /api/config/<name>` with no auth check; validates `exe` via `sanitize_rel_path`, writes `dev dashboard_exe.txt`, `steam_appid.txt`, `dev dashboard_args.txt`, `dev dashboard_input.txt` (2544-2578 shown).
+- Args write: CR/LF replaced by space, then written directly to `dev dashboard_args.txt` (2563-2566). No allowlist/quoting policy.
+- `src/host/main.cpp:1918-1944` reads `dev dashboard_args.txt` and passes to `trt_bridge_set_cmd_args`; if absent, falls back to profile `launch_args`.
 - `src/host/settings.cpp:157-165` stores `launch_args` (max 512 chars) from settings.
 
 **Impact class:** unauth config tamper can influence guest process command line on next launch. Combined with unauth launch endpoint (code-reviewed, not tested) this is a high-risk workflow compromise. **No launch/exec performed in this assessment.**

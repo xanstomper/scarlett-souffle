@@ -11,7 +11,7 @@ For devs/owners assessing their own Xbox dev-mode + tooling exposure. Read-only 
 ```bash
 ./SELF-AUDIT-QUICKCHECK.sh <xbox-ip>
 ```
-Outputs HTTP status/size for common Tiramisu/WDP/UPnP endpoints. Treat any sensitive 200 as exposure.
+Outputs HTTP status/size for common dev dashboard/WDP/UPnP endpoints. Treat any sensitive 200 as exposure.
 
 ## 3. Triage findings
 Use 3-gate evidence:

@@ -1,6 +1,6 @@
 # Dev Container API Surface Map (read-only static review)
 
-Source: `src/guest/*.def` export lists in local Tiramisu tree. Maps the Win32 emulation boundary exposed to guest games on the UWP host — useful for porting/devs and for documenting container-escape hypotheses (none proven).
+Source: `src/guest/*.def` export lists in local dev dashboard tree. Maps the Win32 emulation boundary exposed to guest games on the UWP host — useful for porting/devs and for documenting container-escape hypotheses (none proven).
 
 ## Shims present by module (exports)
 

@@ -1,6 +1,6 @@
 # Host Module Static Review (steam_client / ui / swapchain)
 
-Read-only static review of local Tiramisu host modules. No runtime exploit testing performed.
+Read-only static review of local dev dashboard host modules. No runtime exploit testing performed.
 
 ## steam_client.cpp
 

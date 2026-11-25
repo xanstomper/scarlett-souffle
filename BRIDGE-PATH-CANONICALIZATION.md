@@ -1,6 +1,6 @@
 # Bridge Path Canonicalization (static review, read-only)
 
-Source: `src/trt/vfs.cpp` + `src/trt/bridge_kernel32.cpp`, local Tiramisu tree. For UWP/Win32 porters and authorized research. No exploit executed.
+Source: `src/trt/vfs.cpp` + `src/trt/bridge_kernel32.cpp`, local dev dashboard tree. For UWP/Win32 porters and authorized research. No exploit executed.
 
 ## Virtual drive model
 - `C:\` -> writable host dir (game installs, saves, registry file: `C:\registry.hiv`).

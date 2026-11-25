@@ -6,7 +6,7 @@ Evidence-grounded handoff for the Scarlett Soufflé campaign (declared owner est
 
 | ID | Sev | Finding | Owner action | Evidence |
 |---|---:|---|---|---|
-| SPY-002 | 8.0 | Unauth Tiramisu control PIN leak + pairing token issuance | Remove PIN from `/api/status`; auth+CSRF for controls; short-lived tokens | `REPRODUCTION.md`, `ATTACK-VECTORS.md` |
+| SPY-002 | 8.0 | Unauth dev dashboard control PIN leak + pairing token issuance | Remove PIN from `/api/status`; auth+CSRF for controls; short-lived tokens | `REPRODUCTION.md`, `ATTACK-VECTORS.md` |
 | SPY-012 | High | Unauth WDP OS/settings/user-presence leak | Auth-gate WDP `/api/os/*`, `/ext/settings`; isolate 11443 | `DEVICE-PORTAL-ANON-EXPOSURE.md` |
 | SPY-014 | High | Unauth WDP device IDs/network/package inventory leak | Auth-gate `/ext/xbox/info`, `/api/networking/ipconfig`, `/api/app/packagemanager/packages`; redact exports | `WDP-FIELD-DICTIONARY.md` |
 | SPY-015 | High | Unauth WDP `/ext/user` profile disclosure | Auth-gate `/ext/user`; disable anonymous WDP | `RESEARCH-UPDATE-2026-11-25.md` |
@@ -19,7 +19,7 @@ Evidence-grounded handoff for the Scarlett Soufflé campaign (declared owner est
 ## Code-observed, not actively exploited
 
 - Unauth mutation handlers in `webxfer.cpp`: launch/stop/rescan/delete/config/upload/restore/cover (see `SOURCE-REVIEW-FINDINGS.md`).
-- Config->args chain: unauth config writes `tiramisu_args.txt`, host passes to bridge args; launch not executed (`SOURCE-REVIEW-EXTENDED.md`).
+- Config->args chain: unauth config writes `dev dashboard_args.txt`, host passes to bridge args; launch not executed (`SOURCE-REVIEW-EXTENDED.md`).
 
 ## Unproven hypotheses (lab only)
 

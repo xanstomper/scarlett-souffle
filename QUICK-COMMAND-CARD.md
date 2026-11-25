@@ -2,7 +2,7 @@
 
 Run only against systems you own/are authorized to assess. **Read-only only** — no POST/PUT/DELETE mutation, no creds, no brute force.
 
-## Tiramisu (9127)
+## dev dashboard (9127)
 ```bash
 curl -s http://$XBOX:9127/api/status | jq .
 curl -s http://$XBOX:9127/games | jq .

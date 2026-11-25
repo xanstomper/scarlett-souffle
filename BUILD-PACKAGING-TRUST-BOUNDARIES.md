@@ -1,6 +1,6 @@
 # Build / Packaging / Deploy Trust Boundaries (static review)
 
-Read-only static review of local Tiramisu build/deploy scripts. Observations are devops/supply-chain hygiene notes, not confirmed runtime exploits.
+Read-only static review of local dev dashboard build/deploy scripts. Observations are devops/supply-chain hygiene notes, not confirmed runtime exploits.
 
 ## Observed
 

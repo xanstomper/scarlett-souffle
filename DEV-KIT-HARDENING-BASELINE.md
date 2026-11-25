@@ -4,7 +4,7 @@ Actionable baseline for devs operating Xbox dev kits and UWP/porting tooling on 
 
 ## Network exposure
 - Isolate dev kits on a trusted VLAN; block 9127/tcp, 11443/tcp, 2869/tcp, 1900/udp from untrusted LAN/Wi-Fi.
-- Prefer localhost tunnel/VPN for remote management. Do not expose WDP or Tiramisu dashboard broadly.
+- Prefer localhost tunnel/VPN for remote management. Do not expose WDP or dev dashboard dashboard broadly.
 
 ## Authentication & browser controls
 - Require auth on every read/write management endpoint; remove PIN/secret fields from unauth status APIs.

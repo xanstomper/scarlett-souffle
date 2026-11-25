@@ -16,7 +16,7 @@
 | SPY-007 | medium 5.5 | SSRF | 9127 `/api/download-url` | Unauth POST arbitrary http(s) URL accepted (202); console fetch caused measurable `last_error` diff; no file written. |
 | SPY-008 | info | HARDWARE | 2869/1900 UPnP | UPnP DeviceHost XML exposed unauth; SSDP 1900/udp open; MediaRenderer XBOX metadata. |
 | SPY-009 | info | HARDWARE | 11443 | Windows Device Portal TLSv1.3 reachable; self-signed WDP cert issuer observed. |
-| SPY-010 | medium 5.5 | INFOLEAK | 9127 `/api/list-files?game=hello` | Unauth file manifest disclosure with sizes including `.tiramisu/*` profiles/shims/imports and exe names. |
+| SPY-010 | medium 5.5 | INFOLEAK | 9127 `/api/list-files?game=hello` | Unauth file manifest disclosure with sizes including `.dev dashboard/*` profiles/shims/imports and exe names. |
 | SPY-011 | medium 5.5 | AUTHZ | 9127 `/api/settings` | Unauth POST changed `show_qr` true->false->true; reversible proof. |
 | SPY-012 | **high** | INFOLEAK | 11443 `/api/os/info`, `/ext/settings` | Unauth Device Portal leaks OS build/platform/sandbox/dev settings and configured user identifier presence. Read-only. |
 | SPY-013 | medium 5.5 | AUTHZ | 2869 UPnP RenderingControl controlURL | Unauth SOAP GetVolume returned CurrentVolume=100; GetMute/GetTransportInfo also responded read-only. Mutating AVTransport/RenderingControl actions not invoked. |
@@ -25,7 +25,7 @@
 
 ## Attack surface map (observed)
 
-### Tiramisu dashboard — http://10.0.0.23:9127
+### dev dashboard dashboard — http://10.0.0.23:9127
 **Observed unauth read:** `/`, `/games`, `/api/status`, `/api/settings`, `/api/logs`, `/api/steam/status`, `/api/steam/library`, `/api/steam/qr.svg`, `/api/qr.svg`, `/api/list-files?game=<n>`, `/api/cover/<name>`, `/controls`, `/api/backup-saves`, `/api/debug-bundle`, `/progress/<id>`.
 
 **Observed unauth mutation/control (code-reviewed; not all actively tested):** `/api/controls/pair`, `/api/controls/input`, `/api/controls/leave`, `/api/settings` POST (CONFIRMED), `/api/stop`, `/api/rescan`, `/api/game/<n>` DELETE, `/api/delete/<n>`, `/api/config/<n>`, `/api/launch/<n>`, `/api/upload-file`, `/upload/<name>.zip`, `/api/upload-complete`, `/api/download-url` POST (SSRF CONFIRMED), `/api/restore-saves`, `/api/cover/<n>` PUT, `/api/steam/qr|refresh|signout|download/<appid>`.
@@ -53,7 +53,7 @@
 ## UWP / sideloading / porting / dev-mode notes (evidence-grounded)
 
 - **Dev Mode container reality:** Observed platform is Xbox Series S/SystemOS with WDP and dev settings (`SandboxId=XDKS.1`, `DefaultApp=Dev Home`). Dev Mode enables deployment/debug workflows; it also increases management-plane exposure when LAN-reachable.
-- **Tiramisu packaging signal:** Games list shows x64/x86 UWP/Win32-compat entries (`compat` labels include "x64 D3D11 Ready", "x64 Windows Ready", "x86 32-bit (JIT)"), per-game `.tiramisu` manifests/profiles/shims/import mappings, and `tiramisu.profile.ini`. This confirms a translation/shim layer, not a native Xbox retail entitlement path.
+- **dev dashboard packaging signal:** Games list shows x64/x86 UWP/Win32-compat entries (`compat` labels include "x64 D3D11 Ready", "x64 Windows Ready", "x86 32-bit (JIT)"), per-game `.dev dashboard` manifests/profiles/shims/import mappings, and `dev dashboard.profile.ini`. This confirms a translation/shim layer, not a native Xbox retail entitlement path.
 - **Sideloading risk class:** Unauthenticated upload/restore/config/launch endpoints on 9127 (code-reviewed) mean any LAN actor could alter dev content if exercised. We did **not** exercise destructive/upload/launch endpoints. Devs should bind dashboard to localhost or require auth/token.
 - **Porting/research value:** File manifests and compat metadata are useful for debugging packaging; same data is also recon for attackers. Treat dev dashboards as sensitive admin interfaces.
 - **Jailbreak/escalation claim discipline:** No kernel/host escape/jailbreak was proven. SPY-002 is a control-plane auth bypass; SPY-007 is SSRF; SPY-011 is unauth settings mutation. These are serious dev-kit exposures, not proven bootrom/hypervisor escapes.
@@ -71,7 +71,7 @@
 - `FINDINGS.md`, `EVIDENCE.md` — earlier archive.
 
 ## Defender/dev mitigations
-- Bind Tiramisu/dashboard to loopback or require strong auth + CSRF on all mutation endpoints.
+- Bind dev dashboard/dashboard to loopback or require strong auth + CSRF on all mutation endpoints.
 - Disable UPnP/SSDP where not needed; firewall 2869/1900/9127/11443 from untrusted LANs.
 - Treat Device Portal as admin plane; do not expose dev kits on shared networks.
 - Rotate/revoke any dev credentials exposed in logs/settings; audit save/debug bundle contents before sharing.

@@ -19,7 +19,7 @@ All chains below are grounded in confirmed findings. Steps marked **not executed
 
 ## Chain C — Recon to targeted attack planning (CONFIRMED)
 1. **SPY-012/014:** WDP leaks OS build/platform/sandbox/dev mode, device identifiers (redacted), network config, 74 installed packages.  
-2. **SPY-010/004/003:** Tiramisu leaks file manifests, game inventory, logs, settings, save/debug exports.  
+2. **SPY-010/004/003:** dev dashboard leaks file manifests, game inventory, logs, settings, save/debug exports.  
 3. **SPY-008/013:** UPnP exposes device metadata/SCPDs and accepts read-only SOAP queries unauth.
 
 **Impact:** Lowers attacker uncertainty; enables targeted exploit development in lab. No social engineering/third-party action taken.
@@ -33,6 +33,6 @@ All chains below are grounded in confirmed findings. Steps marked **not executed
 
 ## Defensive priority
 1. Auth+CSRF on all 9127 mutation/control endpoints; remove PIN from status.  
-2. Restrict WDP/UPnP/Tiramisu to trusted network/localhost.  
+2. Restrict WDP/UPnP/dev dashboard to trusted network/localhost.  
 3. Disable CORS wildcard.  
 4. Treat dev kits as admin assets, isolated VLAN.

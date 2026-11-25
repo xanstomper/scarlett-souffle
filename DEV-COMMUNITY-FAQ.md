@@ -6,9 +6,9 @@ Short answers for Xbox Dev Mode / UWP / porting / exploit-research discussions. 
 **No.** Dev Mode is a supported developer feature. This assessment confirmed management-plane exposures (unauth control pairing, info leaks, SSRF, config mutation, UPnP read-only SOAP queries) but **no** kernel/hypervisor/bootrom escape, no persistent unsigned retail jailbreak, and no platform-security bypass proof.
 
 ## What's the most serious confirmed issue here?
-**SPY-002 (HIGH 8.0):** unauth Tiramisu `/api/status` leaked `control_code`; unauth `/api/controls/pair` issued a Bearer token; token was revoked after proof. No input injected. This is a control-plane auth failure.
+**SPY-002 (HIGH 8.0):** unauth dev dashboard `/api/status` leaked `control_code`; unauth `/api/controls/pair` issued a Bearer token; token was revoked after proof. No input injected. This is a control-plane auth failure.
 
-## Is the Tiramisu dashboard safe on a LAN?
+## Is the dev dashboard dashboard safe on a LAN?
 **Not by default in this observed state.** Unauth reads exposed status/games/settings/logs/file manifests/QR/steam state/backup-debug exports. Source review showed unauth mutation handlers for config/launch/upload/restore/delete/stop/rescan. Only safe reversible proofs were performed (settings toggle); destructive endpoints not tested.
 
 ## Did you prove remote code execution?
