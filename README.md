@@ -43,6 +43,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`OBSERVED-PLATFORM.md`](OBSERVED-PLATFORM.md) — sanitized platform facts.
 - [`DEVICE-PORTAL-ANON-EXPOSURE.md`](DEVICE-PORTAL-ANON-EXPOSURE.md) — redacted anonymous WDP endpoint/data map.
 - [`BUILD-PACKAGING-TRUST-BOUNDARIES.md`](BUILD-PACKAGING-TRUST-BOUNDARIES.md) — build/deploy script trust-boundary notes.
+- [`REMAINING-HOST-MODULE-REVIEW.md`](REMAINING-HOST-MODULE-REVIEW.md) — final static review of remaining host modules.
 - [`HOST-MODULE-REVIEW.md`](HOST-MODULE-REVIEW.md) — steam_client/ui/swapchain static review.
 - [`BOOT-CHAINLOAD-REGISTRY.md`](BOOT-CHAINLOAD-REGISTRY.md) — CreateProcessW chainload hook + registry hive boundary.
 - [`BRIDGE-PATH-CANONICALIZATION.md`](BRIDGE-PATH-CANONICALIZATION.md) — guest->host VFS resolver review.
