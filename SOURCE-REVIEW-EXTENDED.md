@@ -36,3 +36,7 @@ UPnP SCPDs/control endpoints exposed; read-only SOAP queries succeeded unauth (S
 - Allowlist download-url destinations/schemes/ports; block loopback/link-local/metadata unless explicitly required.
 - Treat args/config as untrusted input; enforce strict allowlist or signed config.
 - Disable UPnP/SSDP and restrict WDP on untrusted LANs.
+
+## 7) Cover art outbound fetch behavior (code-observed)
+
+`src/host/cover_art.cpp` fetches Steam store/appdetails/image URLs via HTTP client; it also resolves image URLs from remote JSON fields (`path_full`, screenshots, header/background). URLs are not user-supplied directly through webxfer in this path, but remote-response-driven fetches are a trust boundary. Risk is low in normal use; in compromised-network scenarios, validate/canonicalize destinations and enforce HTTPS/allowlists.

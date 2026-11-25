@@ -34,6 +34,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`DEVICE-PORTAL-ANON-EXPOSURE.md`](DEVICE-PORTAL-ANON-EXPOSURE.md) — redacted anonymous WDP endpoint/data map.
 - [`GUEST-BRIDGE-REVIEW.md`](GUEST-BRIDGE-REVIEW.md) — guest/bridge trust-boundary static review.
 - [`DISCLOSURE-TEMPLATE.md`](DISCLOSURE-TEMPLATE.md) — responsible disclosure template.
+- [`LAB-TEST-MATRIX.md`](LAB-TEST-MATRIX.md) — safe-to-lab test prioritization.
 - [`findings-redacted.json`](findings-redacted.json) — machine-readable redacted export.
 - `EVIDENCE.md`, `FINDINGS.md` — earlier archive.
 
