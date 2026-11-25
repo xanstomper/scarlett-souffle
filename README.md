@@ -21,6 +21,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 
 ## Repo index
 
+- [`EXECUTIVE-SUMMARY.md`](EXECUTIVE-SUMMARY.md) — non-technical executive summary.
 - [`ATTACK-VECTORS.md`](ATTACK-VECTORS.md) — finding table, surface map, chains, mitigations.
 - [`GLOSSARY.md`](GLOSSARY.md) — dev-mode/UWP/porting/security terminology.
 - [`DEV-COMMUNITY-FAQ.md`](DEV-COMMUNITY-FAQ.md) — myths vs evidence, dev/porting/jailbreak framing.
