@@ -80,6 +80,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`QUICKSTART-AUDIT-REPORT.md`](QUICKSTART-AUDIT-REPORT.md) — owner read-only audit and reporting workflow.
 - [`REDTEAM-DEVTEAM-HANDOFF.md`](REDTEAM-DEVTEAM-HANDOFF.md) — findings-to-fixes handoff.
 - [`SCOPE-AND-WALLS.md`](SCOPE-AND-WALLS.md) — how this engagement was bounded.
+- [`FINAL-STATUS-REPORT.md`](FINAL-STATUS-REPORT.md) — consolidated final status.
 - [`REPORT-PACK-INDEX.md`](REPORT-PACK-INDEX.md) — consolidated report pack index.
 - [`findings-redacted.json`](findings-redacted.json) — machine-readable redacted export.
 - `EVIDENCE.md`, `FINDINGS.md` — earlier archive.
