@@ -27,3 +27,11 @@
 
 ## Code-review observed unauth mutation surface (NOT actively tested - destructive/state-impact)
 Source `src/host/webxfer.cpp` shows no auth checks before handlers for: `/api/stop`, `/api/rescan`, `/api/game/<name>` DELETE, `/api/config/<name>`, `/api/launch/<name>`, `/api/upload-file`, `/api/upload-complete`, `/api/download-url` (SSRF proven separately), `/api/restore-saves`, `/api/cover/<name>` PUT, `/api/delete/<name>`. These are high-impact if reachable on LAN; active confirmation requires per-action reversible/non-destructive proof.
+
+## Added findings/evidence
+- **SPY-012** (high, INFOLEAK): anonymous Device Portal `/api/os/info` returned Platform=Xbox Series S, OsEdition=SystemOS, OsVersion=26100.9662.amd64fre.xb_flt_2610ge.261104-2200, SandboxId=XDKS.1; `/ext/settings` exposed dev settings/user identifier presence. Read-only.
+- **SPY-013** (medium, AUTHZ/CWE-306): anonymous UPnP SOAP read-only queries succeeded — RenderingControl GetVolume=100, GetMute=0, AVTransport GetTransportInfo=NO_MEDIA_PRESENT/OK. No mutating SOAP actions invoked.
+
+## Device Portal anonymous surface observed
+- 200: `/`, `/api/os/info`, `/api/os/machinename`, `/api/os/devicefamily` (`Windows.Xbox`), `/ext/settings`
+- 404: `/api`, `/debug`, `/deploy`, `/header`, `/info`, `/resources`, `/ext/app`, `/ext/xboxlive`, `/ext/network`, `/ext/users`, `/ext/remoteaddress`, `/api/settings/developer`, `/ext/devices`

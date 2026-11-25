@@ -1,6 +1,6 @@
 # SPYDERMONKEY War Report — xbox-devmode
 
-_generated 2026-11-25T10:49:41.208874+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
+_generated 2026-11-25T10:54:28.928211+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
 
 ## Authorization & scope
 
@@ -12,9 +12,9 @@ _generated 2026-11-25T10:49:41.208874+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 ## Executive summary
 
-- **11** finding(s) registered · **9** confirmed with 3-gate evidence
-- severity mix: high=2, info=3, medium=6
-- risk score: **35.5** · cvss avg 4.45 · max 8.0
+- **13** finding(s) registered · **11** confirmed with 3-gate evidence
+- severity mix: high=3, info=3, medium=7
+- risk score: **49.0** · cvss avg 4.81 · max 8.0
 - **0** chain candidate(s) — low findings combining into high-impact chains
 - **0** detection rule(s) mirrored (kage)
 - harvest crown rows: 0 (shukaku pricing)
@@ -24,8 +24,8 @@ _generated 2026-11-25T10:49:41.208874+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 | technique | findings | confirmed |
 |---|---|---|
-| T-UNKNOWN | 7 | 6 |
-| T1068 | 3 | 2 |
+| T-UNKNOWN | 8 | 7 |
+| T1068 | 4 | 3 |
 | T1190 | 1 | 1 |
 
 _3 technique(s) touched by the engagement's registered findings_
@@ -45,6 +45,8 @@ _3 technique(s) touched by the engagement's registered findings_
 | SPY-009 | info | 0.0 | CONFIRMED | HARDWARE | Windows Device Portal reachable over TLS on 10.0.0.23:11443 (issuer Microsoft Windows Web Management (Test)) | 10.0.0.23:11443 |
 | SPY-010 | medium | 5.5 | CONFIRMED | INFOLEAK | Unauthenticated game file-manifest disclosure via /api/list-files | http://10.0.0.23:9127/api/list-files?game=hello |
 | SPY-011 | medium | 5.5 | CONFIRMED | AUTHZ | Unauthenticated host settings tampering via /api/settings | http://10.0.0.23:9127/api/settings |
+| SPY-012 | high | 8.0 | CONFIRMED | INFOLEAK | Unauthenticated Windows Device Portal info disclosure (/api/os/info, /ext/settings) | https://10.0.0.23:11443/api/os/info, /ext/settings |
+| SPY-013 | medium | 5.5 | CONFIRMED | AUTHZ | Unauthenticated UPnP RenderingControl SOAP query (GetVolume) on Xbox DeviceHost | http://10.0.0.23:2869/upnphost/udhisapi.dll?control=uuid:b0b712e4-7a75-436b-9373-b24e61bb0daa+urn:upnp-org:serviceId:RenderingControl |
 
 ### SPY-001 — SMBv1 absent — MS17-010/EternalBlue lane cleared [CONFIRMED · info · conf 0.95]
 - class: RECON · asset: 10.0.0.23:445
@@ -102,6 +104,16 @@ control: differential is not specific (hypothesis-grade)
 - evidence quality: 3-gate
 - proof: baseline: GET /api/settings returned show_qr=true, log_lines=14 with no auth; attack: unauthenticated POST /api/settings with {"show_qr":false} returned HTTP 200 {"saved":true}; diff: GET /api/settings showed show_qr=false; restore: POST {"show_qr":true} returned saved and GET confirmed show_qr=true; no persistence, cosmetic field only, fully reversible
 
+### SPY-012 — Unauthenticated Windows Device Portal info disclosure (/api/os/info, /ext/settings) [CONFIRMED · high · conf 0.95]
+- class: INFOLEAK · asset: https://10.0.0.23:11443/api/os/info, /ext/settings · CWE CWE-200
+- evidence quality: 3-gate
+- proof: baseline: Device Portal admin/settings endpoints expected to require authentication; attack: anonymous HTTPS GET (no credentials/cookies) to https://10.0.0.23:11443/api/os/info, /api/os/machinename, /ext/settings; diff: HTTP 200 JSON returned OsVersion=26100.9662.amd64fre.xb_flt_2610ge.261104-2200, Platform=Xbox Series S, OsEdition=SystemOS, ComputerName=XBOX, SandboxId=XDKS.1, DefaultApp=Dev Home, and AutoSignInUser options including a configured user identifier; settings expose network/power/video/audio/devmode preferences. Evidence captured read-only; no settings changed.
+
+### SPY-013 — Unauthenticated UPnP RenderingControl SOAP query (GetVolume) on Xbox DeviceHost [CONFIRMED · medium · conf 0.95]
+- class: AUTHZ · asset: http://10.0.0.23:2869/upnphost/udhisapi.dll?control=uuid:b0b712e4-7a75-436b-9373-b24e61bb0daa+urn:upnp-org:serviceId:RenderingControl · CWE CWE-306 · WSTG WSTG-ATHZ-01 · ATT&CK T1068
+- evidence quality: 3-gate
+- proof: baseline: UPnP control endpoint should not allow unauthenticated control queries from arbitrary LAN clients; attack: anonymous HTTP POST SOAP GetVolume (InstanceID=0, Channel=Master) with no auth token; diff: HTTP 200 SOAP GetVolumeResponse returned CurrentVolume=100 (dt:ui2). Read-only query only; no mutating action invoked.
+
 ## Phase coverage
 
 - completed   scope_analysis (barbican)
@@ -120,7 +132,7 @@ control: differential is not specific (hypothesis-grade)
 
 ## Evidence integrity
 
-- ledger rows: 11 · signed: 11 · unsigned: 0
+- ledger rows: 13 · signed: 13 · unsigned: 0
 - integrity errors: 0
 
 ## Closeout

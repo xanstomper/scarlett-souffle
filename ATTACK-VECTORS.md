@@ -19,6 +19,7 @@
 | SPY-010 | medium 5.5 | INFOLEAK | 9127 `/api/list-files?game=hello` | Unauth file manifest disclosure with sizes including `.tiramisu/*` profiles/shims/imports and exe names. |
 | SPY-011 | medium 5.5 | AUTHZ | 9127 `/api/settings` | Unauth POST changed `show_qr` true->false->true; reversible proof. |
 | SPY-012 | **high** | INFOLEAK | 11443 `/api/os/info`, `/ext/settings` | Unauth Device Portal leaks OS build/platform/sandbox/dev settings and configured user identifier presence. Read-only. |
+| SPY-013 | medium 5.5 | AUTHZ | 2869 UPnP RenderingControl controlURL | Unauth SOAP GetVolume returned CurrentVolume=100; GetMute/GetTransportInfo also responded read-only. Mutating AVTransport/RenderingControl actions not invoked. |
 
 ## Attack surface map (observed)
 
