@@ -1,0 +1,14 @@
+title: "Suspicious: https://10.0.0.23:11443/ext/xbox/info, /api/networking/ipconfig, /api/app/packagemanager/packages"
+id: "c3c15c78-a706-4977-a3d2-4613372c2970"
+status: "experimental"
+description: "Mirrored from confirmed attack: https://10.0.0.23:11443/ext/xbox/info, /api/networking/ipconfig, /api/app/packagemanager/packages (attack ref: https://10.0.0.23:11443/ext/xbox/info, /api/networking/ipconfig, /api/app/packagemanager/packages; match: documented class signature)."
+logsource:
+    service: "app"
+detection:
+    custom: true
+    condition: "sel"
+falsepositives:
+    - "none known"
+level: "medium"
+tags:
+    - "attack.t1592"

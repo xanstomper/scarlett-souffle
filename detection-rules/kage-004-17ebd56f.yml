@@ -1,0 +1,14 @@
+title: "Suspicious: http://10.0.0.23:9127/api/logs + /api/settings + /games"
+id: "17ebd56f-4b31-4980-aef6-838fc0a5b904"
+status: "experimental"
+description: "Mirrored from confirmed attack: http://10.0.0.23:9127/api/logs + /api/settings + /games (attack ref: http://10.0.0.23:9127/api/logs + /api/settings + /games; match: documented class signature)."
+logsource:
+    service: "app"
+detection:
+    custom: true
+    condition: "sel"
+falsepositives:
+    - "none known"
+level: "medium"
+tags:
+    - "attack.t1592"

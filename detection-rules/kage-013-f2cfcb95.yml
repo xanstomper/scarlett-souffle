@@ -1,0 +1,14 @@
+title: "Suspicious: https://10.0.0.23:11443/ext/user"
+id: "f2cfcb95-691b-4f4a-a225-38e44e81d1f5"
+status: "experimental"
+description: "Mirrored from confirmed attack: https://10.0.0.23:11443/ext/user (attack ref: https://10.0.0.23:11443/ext/user; match: documented class signature)."
+logsource:
+    service: "app"
+detection:
+    custom: true
+    condition: "sel"
+falsepositives:
+    - "none known"
+level: "medium"
+tags:
+    - "attack.t1592"

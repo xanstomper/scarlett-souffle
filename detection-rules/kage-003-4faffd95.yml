@@ -1,0 +1,15 @@
+title: "Sensitive-path GET (backup/env/git)"
+id: "4faffd95-5095-4297-ae5f-13638d5d3e4e"
+status: "experimental"
+description: "Mirrored from confirmed attack: sensitive path fetch (attack ref: http://10.0.0.23:9127/api/backup-saves, /api/debug-bundle; match: GET on sensitive path + 200)."
+logsource:
+    service: "web"
+detection:
+    uri_re: "(backup|dump|\.env|\.git/config)"
+    status: 200
+    condition: "sel"
+falsepositives:
+    - "ops pulling backups over the CDN"
+level: "high"
+tags:
+    - "attack.t1552"

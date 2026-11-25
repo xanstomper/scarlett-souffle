@@ -45,6 +45,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`DISCLOSURE-PLAYBOOK.md`](DISCLOSURE-PLAYBOOK.md) — disclosure triage/playbook.
 - [`UWP-SIDELOADING-PORTING-CHECKLIST.md`](UWP-SIDELOADING-PORTING-CHECKLIST.md) — UWP/sideloading/porting hardening checklist.
 - [`PRIORITIZED-REMEDIATION.md`](PRIORITIZED-REMEDIATION.md) — P0-P3 remediation priorities.
+- [`KAGE-DETECTION-EXPORT.md`](KAGE-DETECTION-EXPORT.md) + `detection-rules/` — 13 real Sigma rules mirrored from confirmed findings.
 - [`DETECTION-RULES.md`](DETECTION-RULES.md) — defender detection rules mapped to observed artifacts.
 - [`NETWORK-SEGMENTATION.md`](NETWORK-SEGMENTATION.md) — observed ports/services and segmentation baseline.
 - [`DEV-KIT-HARDENING-BASELINE.md`](DEV-KIT-HARDENING-BASELINE.md) — actionable dev kit hardening baseline.

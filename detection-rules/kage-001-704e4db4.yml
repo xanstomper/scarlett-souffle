@@ -1,0 +1,14 @@
+title: "Suspicious: 10.0.0.23:445"
+id: "704e4db4-d577-4740-a3ce-41b65a1281c8"
+status: "experimental"
+description: "Mirrored from confirmed attack: 10.0.0.23:445 (attack ref: 10.0.0.23:445; match: documented class signature)."
+logsource:
+    service: "app"
+detection:
+    custom: true
+    condition: "sel"
+falsepositives:
+    - "none known"
+level: "medium"
+tags:
+    - "attack.t1592"

@@ -1,0 +1,15 @@
+title: "Path traversal sequence in request"
+id: "95b38777-1382-43c3-ae94-878a1ef06d4a"
+status: "experimental"
+description: "Mirrored from confirmed attack: path traversal (attack ref: http://10.0.0.23:9127/api/list-files?game=hello; match: traversal sequence in uri + 200)."
+logsource:
+    service: "web"
+detection:
+    uri_re: "(\.\./|\.\.\\|%2e%2e)"
+    status: 200
+    condition: "sel"
+falsepositives:
+    - "none common"
+level: "high"
+tags:
+    - "attack.t1083"

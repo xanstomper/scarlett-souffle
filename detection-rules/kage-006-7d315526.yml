@@ -1,0 +1,14 @@
+title: "Suspicious: 10.0.0.23:2869/upnphost/udhisapi.dll?content=uuid:b0b712e4-7a75-436b-9373-b24e61bb0daa"
+id: "7d315526-478b-4950-a412-4708c7fb45d8"
+status: "experimental"
+description: "Mirrored from confirmed attack: 10.0.0.23:2869/upnphost/udhisapi.dll?content=uuid:b0b712e4-7a75-436b-9373-b24e61bb0daa (attack ref: 10.0.0.23:2869/upnphost/udhisapi.dll?content=uuid:b0b712e4-7a75-436b-9373-b24e61bb0daa; match: documented class signature)."
+logsource:
+    service: "app"
+detection:
+    custom: true
+    condition: "sel"
+falsepositives:
+    - "none known"
+level: "medium"
+tags:
+    - "attack.t1592"

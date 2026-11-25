@@ -1,0 +1,14 @@
+title: "Suspicious: https://10.0.0.23:11443/api/os/info, /ext/settings"
+id: "fa11dc0e-7894-4104-ab10-291810a39bc0"
+status: "experimental"
+description: "Mirrored from confirmed attack: https://10.0.0.23:11443/api/os/info, /ext/settings (attack ref: https://10.0.0.23:11443/api/os/info, /ext/settings; match: documented class signature)."
+logsource:
+    service: "app"
+detection:
+    custom: true
+    condition: "sel"
+falsepositives:
+    - "none known"
+level: "medium"
+tags:
+    - "attack.t1592"

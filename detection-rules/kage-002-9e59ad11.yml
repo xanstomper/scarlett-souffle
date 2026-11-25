@@ -1,0 +1,15 @@
+title: "Role parameter flipped in request"
+id: "9e59ad11-1856-4b75-a6d1-40f40dcbb76e"
+status: "experimental"
+description: "Mirrored from confirmed attack: role/level param trusted from input (attack ref: http://10.0.0.23:9127; match: role/admin/level param flipped → privileged response)."
+logsource:
+    service: "api"
+detection:
+    query_contains: "role="
+    value_re: "(admin|^1$|^0$)"
+    condition: "sel"
+falsepositives:
+    - "role-switch features with server-side re-auth"
+level: "high"
+tags:
+    - "attack.t1098"

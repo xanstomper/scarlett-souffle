@@ -1,0 +1,17 @@
+title: "Protected route with empty credential material"
+id: "ec65df8f-92b4-4a96-af50-3fb6259320b7"
+status: "experimental"
+description: "Mirrored from confirmed attack: authentication bypass (attack ref: http://10.0.0.23:9127/api/settings; match: protected route answers 200 with empty/forged credential)."
+logsource:
+    service: "auth"
+detection:
+    uri_re: "/(api|admin|account)/"
+    cred_empty: true
+    status: 200
+    condition: "sel"
+falsepositives:
+    - "health endpoints"
+    - "public marketing routes"
+level: "critical"
+tags:
+    - "attack.t1550"

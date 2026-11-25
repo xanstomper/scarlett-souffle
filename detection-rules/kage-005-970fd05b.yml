@@ -1,0 +1,14 @@
+title: "App-initiated fetch to loopback/link-local"
+id: "970fd05b-42d2-4578-a9e8-240b9e500e33"
+status: "experimental"
+description: "Mirrored from confirmed attack: server-side internal fetch (attack ref: http://10.0.0.23:9127/api/download-url; match: outbound fetch to link-local/loopback from app process)."
+logsource:
+    service: "egress"
+detection:
+    dest_re: "^(127\.|169\.254\.|10\.|::1)"
+    condition: "sel"
+falsepositives:
+    - "webhook delivery to internal consumers (allowlisted)"
+level: "high"
+tags:
+    - "attack.t1190"
