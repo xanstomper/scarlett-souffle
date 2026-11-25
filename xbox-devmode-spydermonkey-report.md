@@ -1,20 +1,20 @@
 # SPYDERMONKEY War Report — xbox-devmode
 
-_generated 2026-11-25T20:30:07.241819+00:00 · SPYDERMONKEY 8.2.1 · scope: ggpoker_
+_generated 2026-11-25T21:03:01.446676+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
 
 ## Authorization & scope
 
-- engagement: **ggpoker**
+- engagement: **xbox-devmode**
 - objective: owner-authorized validation-only recon of my Xbox Series in dev mode at 10.0.0.23; identify exploitable surfaces useful to the tiramisu project; no gain, no persistence
-- in-scope entries: 38 · deny entries: 1
-- expires: no expiry
+- in-scope entries: 1 · deny entries: 0
+- expires: 2026-12-25T09:14:02.554768+00:00
 - rules: {'max_rate_rps': 10, 'passive_first': True, 'no_destructive': True, 'require_scope_check': True, 'allow_lab': True}
 
 ## Executive summary
 
-- **21** finding(s) registered · **19** confirmed with 3-gate evidence
-- severity mix: high=5, info=3, low=3, medium=10
-- risk score: **89.0** · cvss avg 4.88 · max 8.0
+- **27** finding(s) registered · **25** confirmed with 3-gate evidence
+- severity mix: high=6, info=7, low=3, medium=11
+- risk score: **102.5** · cvss avg 4.29 · max 8.0
 - **1** chain candidate(s) — low findings combining into high-impact chains
 - **16** detection rule(s) mirrored (kage)
 - harvest crown rows: 0 (shukaku pricing)
@@ -24,13 +24,14 @@ _generated 2026-11-25T20:30:07.241819+00:00 · SPYDERMONKEY 8.2.1 · scope: ggpo
 
 | technique | findings | confirmed |
 |---|---|---|
-| T-UNKNOWN | 12 | 11 |
-| T1046 | 1 | 1 |
-| T1068 | 6 | 5 |
-| T1083 | 1 | 1 |
+| T-UNKNOWN | 13 | 12 |
+| T1046 | 2 | 2 |
+| T1068 | 8 | 7 |
+| T1083 | 2 | 2 |
 | T1190 | 1 | 1 |
+| T1557 | 1 | 1 |
 
-_5 technique(s) touched by the engagement's registered findings_
+_6 technique(s) touched by the engagement's registered findings_
 
 ## Findings
 
@@ -57,6 +58,12 @@ _5 technique(s) touched by the engagement's registered findings_
 | SPY-019 | low | 2.5 | CONFIRMED | AUTHZ | Unauthenticated UPnP ConnectionManager SOAP query + SCPD exposure | http://10.0.0.23:2869/upnphost/udhisapi.dll (ConnectionManager:1) |
 | SPY-020 | low | 2.5 | CONFIRMED | AUTHZ | Anonymous WDP GETs issue CSRF-Token cookie without authentication | https://10.0.0.23:11443/api/os/info |
 | SPY-021 | medium | 5.5 | CONFIRMED | CORS | Wildcard CORS with successful preflight on unauth mutation endpoints | http://10.0.0.23:9127 |
+| SPY-022 | high | 7.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP file CONTENT read (not just directory listing) | https://10.0.0.23:11443/api/filesystem/apps/file |
+| SPY-023 | info | 0.0 | CONFIRMED | AUTHZ | CLEARED LANE — every WDP mutation endpoint rejects anonymous writes (403) | https://10.0.0.23:11443 (mutation surface) |
+| SPY-024 | medium | 5.9 | CONFIRMED | HARDWARE | SMB2 signing enabled but not required — NTLM relay lane open, anonymous write not | 10.0.0.23:445 |
+| SPY-025 | info | 0.0 | CONFIRMED | RECON | CLEARED LANE — public SystemOS kernel LPEs are patched on build 26100.9662 (Collateral Damage / Artifice) | 10.0.0.23 |
+| SPY-026 | info | 0.0 | CONFIRMED | HARDWARE | NO NETWORK SURFACE — bootrom and hypervisor unreachable from LAN (physical glitch only) | 10.0.0.23 |
+| SPY-027 | info | 0.0 | CONFIRMED | AUTHZ | CLEARED LANE — WDP filesystem path traversal and null-session SAMR both denied | https://10.0.0.23:11443/api/filesystem/apps/files |
 
 ### SPY-001 — SMBv1 absent — MS17-010/EternalBlue lane cleared [CONFIRMED · info · conf 0.95]
 - class: RECON · asset: 10.0.0.23:445
@@ -164,6 +171,36 @@ control: differential is not specific (hypothesis-grade)
 - evidence quality: 3-gate
 - proof: baseline: cross-origin preflight to mutation endpoints should be blocked for untrusted origins; attack: OPTIONS requests to /api/launch, /api/stop, /api/rescan, /api/upload-file, /api/restore-saves, /api/download-url, /api/settings, /api/controls/pair, /api/controls/input with Origin: http://evil.example all returned HTTP 204; combined with Access-Control-Allow-Origin:* and Allow-Methods GET,POST,PUT,DELETE,OPTIONS (observed on root dashboard responses) this means any website can preflight and attempt cross-origin mutation requests against the dev dashboard
 
+### SPY-022 — Unauthenticated WDP file CONTENT read (not just directory listing) [CONFIRMED · high · conf 0.95]
+- class: INFOLEAK · asset: https://10.0.0.23:11443/api/filesystem/apps/file · CWE CWE-200 · WSTG WSTG-CONF-03 · ATT&CK T1083
+- evidence quality: 3-gate
+- proof: baseline: WDP filesystem endpoints expected to require auth; attack: anonymous HTTPS GET /api/filesystem/apps/file?knownfolderid=Documents&filename=desktop.ini with no cookie/token; diff: HTTP 200 returned the 190-byte desktop.ini [.ShellClassInfo] body — file bytes, not metadata; SPY-018 covered names only
+
+### SPY-023 — CLEARED LANE — every WDP mutation endpoint rejects anonymous writes (403) [CONFIRMED · info · conf 0.95]
+- class: AUTHZ · asset: https://10.0.0.23:11443 (mutation surface) · CWE CWE-306 · WSTG WSTG-ATHZ-01 · ATT&CK T1068
+- evidence quality: 3-gate
+- proof: baseline: anonymous GETs on WDP return 200 (SPY-012..022), so writes were the question; attack: anonymous POST {} to /api/app/packagemanager/package, /api/filesystem/apps/file, /api/os/restart, /api/os/shutdown, /api/controls/reboot, /api/devmode/unattendedsetup-apply; diff: all returned HTTP/2 403 with zero-byte body and no Set-Cookie effect — the unsigned app-deploy and persistence primitives are auth-gated, no side effects
+
+### SPY-024 — SMB2 signing enabled but not required — NTLM relay lane open, anonymous write not [CONFIRMED · medium · conf 0.95]
+- class: HARDWARE · asset: 10.0.0.23:445 · CWE CWE-345 · ATT&CK T1557
+- evidence quality: 3-gate
+- proof: baseline: relay requires Message signing 'required'; attack: nmap smb2-security-mode + smbclient -N; diff: 'Message signing enabled but not required' on SMB2/3; null session authenticates anonymously but tree connect to DevelopmentFiles returns NT_STATUS_ACCESS_DENIED and other share names NT_STATUS_BAD_NETWORK_NAME — no anonymous write/persistence path
+
+### SPY-025 — CLEARED LANE — public SystemOS kernel LPEs are patched on build 26100.9662 (Collateral Damage / Artifice) [CONFIRMED · info · conf 0.95]
+- class: RECON · asset: 10.0.0.23
+- evidence quality: 3-gate
+- proof: baseline: Collateral Damage (CVE-2024-30088) targets 25398.4478/25398.4908/25398.4909; Artifice devmode EoP first fixed 10.0.26100.1968; attack: live GET /api/os/info; diff: OsVersion 26100.9662.amd64fre.xb_flt_2610ge.261104-2200, Platform Xbox Series S, OsEdition SystemOS — both public chains are pre-patch builds, neither applicable; no kernel LPE lane open from this position
+
+### SPY-026 — NO NETWORK SURFACE — bootrom and hypervisor unreachable from LAN (physical glitch only) [CONFIRMED · info · conf 0.95]
+- class: HARDWARE · asset: 10.0.0.23 · CWE CWE-284 · WSTG PTES-NET · ATT&CK T1046
+- evidence quality: 3-gate
+- proof: baseline: a remote boot-chain primitive needs an exposed debug/management listener; attack: nmap top-300 plus curated 1-1024 and debug ranges (730,731,4118,27000-27005,29800-29810,50000); diff: only 22/445/2869/9127/11443 open, every debug/KD port filtered; documented bootrom compromise (Bliss / Gaasedelen) is North Bridge voltage glitching requiring physical access, hypervisor exports no network interface — no remote path exists
+
+### SPY-027 — CLEARED LANE — WDP filesystem path traversal and null-session SAMR both denied [CONFIRMED · info · conf 0.95]
+- class: AUTHZ · asset: https://10.0.0.23:11443/api/filesystem/apps/files · CWE CWE-22 · WSTG WSTG-ATHZ-01 · ATT&CK T1068
+- evidence quality: 3-gate
+- proof: baseline: WDP path param is concatenated into the package root, so traversal was the question; attack: anonymous GET with path=..\..\.., ..\..\..\..\..\Windows, ..\..\..\..\..\Windows\System32\drivers\etc, and rpcclient -N -c 'querydominfo; enumdomusers' against 10.0.0.23; diff: traversal returned HTTP 400 on every depth, and SAMR returned NT_STATUS_ACCESS_DENIED while smbclient -N //10.0.0.23/IPC$ ls returned ACCESS_DENIED — no out-of-root read, no anonymous RPC enumeration
+
 ## Attack chains
 
 - **CH-001** [info_disclosure_ssrf] high (conf 0.75): SPY-003 + SPY-007 → info disclosure names internal hosts → SSRF pivots to them
@@ -205,7 +242,7 @@ control: differential is not specific (hypothesis-grade)
 
 ## Evidence integrity
 
-- ledger rows: 21 · signed: 21 · unsigned: 0
+- ledger rows: 27 · signed: 27 · unsigned: 0
 - integrity errors: 0
 
 ## Closeout

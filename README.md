@@ -4,8 +4,9 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 
 > **Scope/walls:** declared estate only; validation-only; NO-GAIN; no persistence; no third-party contact; no credential guessing/bruteforce; no destructive payloads. Reversible tests restored immediately. Sensitive identifiers redacted in public artifacts.
 
-## Key confirmed findings (13 confirmed / 15 rows)
+## Key confirmed findings (25 confirmed / 27 rows)
 
+- **SPY-022 HIGH 7.5** — Unauth WDP file **content** read (not just listing), including cross-package read of a developer package's private `LocalState` — system packages are refused (`File access is only allowed for developer packages`), traversal returns 400.
 - **SPY-002 HIGH 8.0** — Unauth dev dashboard control PIN disclosure -> Bearer pairing -> control session (revoked, no input injected).
 - **SPY-012 HIGH** — Unauth WDP `/api/os/info` + `/ext/settings` leak OS build/platform/sandbox/dev settings/user presence.
 - **SPY-014 HIGH** — Unauth WDP leaks device identifiers (redacted), network config, 74 installed packages.
@@ -22,6 +23,8 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 ## Repo index
 
 - [`DEVPORTAL-TOOLING-MAP.md`](DEVPORTAL-TOOLING-MAP.md) — WDP client/deploy tooling surface review.
+- [`RESEARCH-SESSION-6.md`](RESEARCH-SESSION-6.md) — kernel/hypervisor/bootrom reachability verdict, cross-package dev `LocalState` read, cleared WDP write/traversal/SAMR lanes.
+- [`KERNEL-HYPERVISOR-BOOTROM-VERDICT.md`](KERNEL-HYPERVISOR-BOOTROM-VERDICT.md) — one-page verdict: no remote path to boot chain; patched kernel LPEs; what remains.
 - [`RESEARCH-SESSION-5.md`](RESEARCH-SESSION-5.md) — full-port ceiling, TLS posture correction, SPY-020.
 - [`RESEARCH-SESSION-4.md`](RESEARCH-SESSION-4.md) — UPnP service expansion, SPY-019, timer note.
 - [`RESEARCH-SESSION-3.md`](RESEARCH-SESSION-3.md) — per-app FS enumeration + KAGE re-mirror.
