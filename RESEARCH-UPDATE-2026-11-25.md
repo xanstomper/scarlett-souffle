@@ -21,3 +21,9 @@
 ## Walls/notes
 - Tiramisu used read-only only. No upload/launch/download/control-pair/input injection executed.
 - SSRF/controls findings already registered in campaign ledger; this update is evidence enrichment.
+
+## Added finding (3-gate, reversible)
+- **SPY-011 Unauthenticated host settings tampering** (`POST /api/settings`, CWE-306, medium): baseline show_qr=true -> unauth POST show_qr=false returned saved -> diff confirmed -> restored true. No gain, no persistence.
+
+## Code-review observed unauth mutation surface (NOT actively tested - destructive/state-impact)
+Source `src/host/webxfer.cpp` shows no auth checks before handlers for: `/api/stop`, `/api/rescan`, `/api/game/<name>` DELETE, `/api/config/<name>`, `/api/launch/<name>`, `/api/upload-file`, `/api/upload-complete`, `/api/download-url` (SSRF proven separately), `/api/restore-saves`, `/api/cover/<name>` PUT, `/api/delete/<name>`. These are high-impact if reachable on LAN; active confirmation requires per-action reversible/non-destructive proof.
