@@ -1,20 +1,20 @@
 # SPYDERMONKEY War Report — xbox-devmode
 
-_generated 2026-11-25T20:24:19.766895+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
+_generated 2026-11-25T20:30:07.241819+00:00 · SPYDERMONKEY 8.2.1 · scope: ggpoker_
 
 ## Authorization & scope
 
-- engagement: **xbox-devmode**
+- engagement: **ggpoker**
 - objective: owner-authorized validation-only recon of my Xbox Series in dev mode at 10.0.0.23; identify exploitable surfaces useful to the tiramisu project; no gain, no persistence
-- in-scope entries: 1 · deny entries: 0
-- expires: 2026-12-25T09:14:02.554768+00:00
+- in-scope entries: 38 · deny entries: 1
+- expires: no expiry
 - rules: {'max_rate_rps': 10, 'passive_first': True, 'no_destructive': True, 'require_scope_check': True, 'allow_lab': True}
 
 ## Executive summary
 
-- **20** finding(s) registered · **18** confirmed with 3-gate evidence
-- severity mix: high=5, info=3, low=3, medium=9
-- risk score: **83.5** · cvss avg 4.85 · max 8.0
+- **21** finding(s) registered · **19** confirmed with 3-gate evidence
+- severity mix: high=5, info=3, low=3, medium=10
+- risk score: **89.0** · cvss avg 4.88 · max 8.0
 - **1** chain candidate(s) — low findings combining into high-impact chains
 - **16** detection rule(s) mirrored (kage)
 - harvest crown rows: 0 (shukaku pricing)
@@ -24,7 +24,7 @@ _generated 2026-11-25T20:24:19.766895+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 | technique | findings | confirmed |
 |---|---|---|
-| T-UNKNOWN | 11 | 10 |
+| T-UNKNOWN | 12 | 11 |
 | T1046 | 1 | 1 |
 | T1068 | 6 | 5 |
 | T1083 | 1 | 1 |
@@ -56,6 +56,7 @@ _5 technique(s) touched by the engagement's registered findings_
 | SPY-018 | medium | 5.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP filesystem directory listing (knownfolderid) | https://10.0.0.23:11443/api/filesystem/apps/files?knownfolderid=Documents |
 | SPY-019 | low | 2.5 | CONFIRMED | AUTHZ | Unauthenticated UPnP ConnectionManager SOAP query + SCPD exposure | http://10.0.0.23:2869/upnphost/udhisapi.dll (ConnectionManager:1) |
 | SPY-020 | low | 2.5 | CONFIRMED | AUTHZ | Anonymous WDP GETs issue CSRF-Token cookie without authentication | https://10.0.0.23:11443/api/os/info |
+| SPY-021 | medium | 5.5 | CONFIRMED | CORS | Wildcard CORS with successful preflight on unauth mutation endpoints | http://10.0.0.23:9127 |
 
 ### SPY-001 — SMBv1 absent — MS17-010/EternalBlue lane cleared [CONFIRMED · info · conf 0.95]
 - class: RECON · asset: 10.0.0.23:445
@@ -158,6 +159,11 @@ control: differential is not specific (hypothesis-grade)
 - evidence quality: 3-gate
 - proof: baseline: CSRF token should only be issued to an authenticated session; attack: anonymous HTTPS GET /api/os/info (and /ext/screenshot, /api/app/packagemanager/state) with no credentials; diff: each response 200 with a fresh set-cookie CSRF-Token value (e.g. token string) — token minted for unauthenticated clients; combined with anonymous mutation endpoint reachability this weakens the CSRF defense posture
 
+### SPY-021 — Wildcard CORS with successful preflight on unauth mutation endpoints [CONFIRMED · medium · conf 0.95]
+- class: CORS · asset: http://10.0.0.23:9127 · CWE CWE-942
+- evidence quality: 3-gate
+- proof: baseline: cross-origin preflight to mutation endpoints should be blocked for untrusted origins; attack: OPTIONS requests to /api/launch, /api/stop, /api/rescan, /api/upload-file, /api/restore-saves, /api/download-url, /api/settings, /api/controls/pair, /api/controls/input with Origin: http://evil.example all returned HTTP 204; combined with Access-Control-Allow-Origin:* and Allow-Methods GET,POST,PUT,DELETE,OPTIONS (observed on root dashboard responses) this means any website can preflight and attempt cross-origin mutation requests against the dev dashboard
+
 ## Attack chains
 
 - **CH-001** [info_disclosure_ssrf] high (conf 0.75): SPY-003 + SPY-007 → info disclosure names internal hosts → SSRF pivots to them
@@ -199,7 +205,7 @@ control: differential is not specific (hypothesis-grade)
 
 ## Evidence integrity
 
-- ledger rows: 20 · signed: 20 · unsigned: 0
+- ledger rows: 21 · signed: 21 · unsigned: 0
 - integrity errors: 0
 
 ## Closeout

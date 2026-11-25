@@ -67,6 +67,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`SAFE-LAB-SCENARIOS.md`](SAFE-LAB-SCENARIOS.md) — authorized reversible lab scenarios.
 - [`LAB-TEST-MATRIX.md`](LAB-TEST-MATRIX.md) — safe-to-lab test prioritization.
 - [`RESPONSE-KEY-SNAPSHOTS.md`](RESPONSE-KEY-SNAPSHOTS.md) — redacted anonymous response key/type snapshots.
+- [`CORS-PREFLIGHT-POSTURE.md`](CORS-PREFLIGHT-POSTURE.md) — wildcard CORS + successful preflight on mutation endpoints (SPY-021).
 - [`OBSERVED-HTTP-MATRIX.md`](OBSERVED-HTTP-MATRIX.md) — redacted observed HTTP response matrix.
 - [`SELF-AUDIT-QUICKCHECK.sh`](SELF-AUDIT-QUICKCHECK.sh) — owner read-only self-audit script.
 - [`WDP-SOFTWARE-SURFACE.md`](WDP-SOFTWARE-SURFACE.md) — redacted anonymous package/software surface summary.
