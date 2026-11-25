@@ -22,6 +22,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 ## Repo index
 
 - [`DEVPORTAL-TOOLING-MAP.md`](DEVPORTAL-TOOLING-MAP.md) — WDP client/deploy tooling surface review.
+- [`RESEARCH-SESSION-5.md`](RESEARCH-SESSION-5.md) — full-port ceiling, TLS posture correction, SPY-020.
 - [`RESEARCH-SESSION-4.md`](RESEARCH-SESSION-4.md) — UPnP service expansion, SPY-019, timer note.
 - [`RESEARCH-SESSION-3.md`](RESEARCH-SESSION-3.md) — per-app FS enumeration + KAGE re-mirror.
 - [`RESEARCH-SESSION-2.md`](RESEARCH-SESSION-2.md) — anon endpoint expansion, SPY-016/017/018.
