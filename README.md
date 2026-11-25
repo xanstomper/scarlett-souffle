@@ -1,3 +1,33 @@
 # Scarlett Soufflé
-Evidence archive — exposed surface on 10.0.0.23 (Microsoft-Windows/10.0, MAC OUI E42AAC=Microsoft).
-Source of truth: spydermonkey xbox-devmode campaign ledger — ~/.redteam/campaigns/xbox-devmode/
+
+Evidence-backed documentation of an owner-authorized, validation-only assessment of an Xbox dev-mode estate (`10.0.0.23`) on a LAN. Focus: exposed surfaces, auth gaps, info leaks, and dev-community relevant UWP/porting/research notes.
+
+> **Scope/walls:** declared estate only; validation-only; NO-GAIN; no persistence; no third-party contact; no credential guessing/bruteforce; no destructive payloads. Reversible tests restored immediately. Sensitive identifiers redacted in public artifacts.
+
+## Key confirmed findings (11 confirmed / 14 rows)
+
+- **SPY-002 HIGH 8.0** — Unauth Tiramisu control PIN disclosure -> Bearer pairing -> control session (revoked, no input injected).
+- **SPY-012 HIGH** — Unauth WDP `/api/os/info` + `/ext/settings` leak OS build/platform/sandbox/dev settings/user presence.
+- **SPY-014 HIGH** — Unauth WDP leaks device identifiers (redacted), network config, 74 installed packages.
+- **SPY-007 MEDIUM** — Unauth SSRF via `/api/download-url` (console fetch diff, no file written).
+- **SPY-010 MEDIUM** — Unauth file-manifest disclosure via `/api/list-files`.
+- **SPY-011 MEDIUM** — Unauth settings mutation via POST `/api/settings` (reversible).
+- **SPY-013 MEDIUM** — Unauth UPnP SOAP read-only queries (GetVolume/GetMute/GetTransportInfo).
+- **SPY-003/004 MEDIUM** — Unauth save/debug export; unauth telemetry/CORS wildcard.
+- **SPY-008/009 INFO** — UPnP DeviceHost/WDP TLS surface exposure.
+- **SPY-001 INFO** — SMBv1/MS17-010 negative clearance.
+
+## Repo index
+
+- [`ATTACK-VECTORS.md`](ATTACK-VECTORS.md) — finding table, surface map, chains, mitigations.
+- [`DEV-COMMUNITY-NOTES.md`](DEV-COMMUNITY-NOTES.md) — dev-kit risk model, UWP/porting notes, responsible jailbreak framing.
+- [`ENDPOINT-INVENTORY.md`](ENDPOINT-INVENTORY.md) — observed endpoints and auth status.
+- [`REPRODUCTION.md`](REPRODUCTION.md) — sanitized, reversible repro commands.
+- [`RESEARCH-UPDATE-2026-11-25.md`](RESEARCH-UPDATE-2026-11-25.md) — live observation log.
+- [`xbox-devmode-spydermonkey-report.md`](xbox-devmode-spydermonkey-report.md) — regenerated war report.
+- [`findings-redacted.json`](findings-redacted.json) — machine-readable redacted export.
+- `EVIDENCE.md`, `FINDINGS.md` — earlier archive.
+
+## Method
+
+Read-only recon, source review of local Tiramisu `webxfer.cpp`, and minimal reversible 3-gate proofs. No destructive endpoint testing (launch/delete/restore/upload) performed. UPnP mutating SOAP actions not invoked.
