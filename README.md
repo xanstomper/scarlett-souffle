@@ -27,6 +27,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`DEV-COMMUNITY-NOTES.md`](DEV-COMMUNITY-NOTES.md) — dev-kit risk model, UWP/porting notes, responsible jailbreak framing.
 - [`ENDPOINT-INVENTORY.md`](ENDPOINT-INVENTORY.md) — observed endpoints and auth status.
 - [`REPRODUCTION.md`](REPRODUCTION.md) — sanitized, reversible repro commands.
+- [`EVIDENCE-TIMELINE.md`](EVIDENCE-TIMELINE.md) — ledger + git evidence timeline.
 - [`RESEARCH-UPDATE-2026-11-25.md`](RESEARCH-UPDATE-2026-11-25.md) — live observation log.
 - [`xbox-devmode-spydermonkey-report.md`](xbox-devmode-spydermonkey-report.md) — regenerated war report.
 - [`SOURCE-REVIEW-FINDINGS.md`](SOURCE-REVIEW-FINDINGS.md) — webxfer auth-gap line evidence.
