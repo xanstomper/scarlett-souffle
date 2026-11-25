@@ -1,0 +1,3 @@
+═══ SURFACE MAP — http://10.0.0.23 ═══
+  ▸ crawled 0 page(s) · 1 url(s) seen · 0 endpoint(s) mined
+  ▸ context.endpoints autofilled — testers now strike the mined surface

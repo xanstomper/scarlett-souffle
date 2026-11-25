@@ -1,0 +1,8 @@
+═══ UNDERCROFT RUN — xbox-devmode (10.0.0.23) ═══
+[2] map: 10.0.0.23 — 0 seams registered
+[3] live route probe: 6 GET candidates (0.2s pacing)
+    → 0 live route(s) CONFIRMED into surface ledger
+[5] auto-craft: 0 CONFIRMED finding(s) → PoC ledger
+▸ undercroft report written: xbox-devmode-undercroft-report.md
+[6] report: xbox-devmode-undercroft-report.md
+═══ next: undercroft export --target xbox-devmode  →  3AM promote ═══

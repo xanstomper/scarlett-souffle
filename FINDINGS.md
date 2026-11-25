@@ -1,0 +1,11 @@
+## Findings (from spydermonkey ledger — xbox-devmode)
+═══ FINDING LEDGER — xbox-devmode (9 finding(s)) ═══
+  SPY-001 [CONFIRMED     info     cvss=0.0 conf=0.95] SMBv1 absent — MS17-010/EternalBlue lane cleared @ 10.0.0.23:445 (RECON)
+  SPY-002 [CONFIRMED     high     cvss=8.0 conf=0.95] Unauthenticated remote-control PIN disclosure → keyb @ http://10.0.0.23:9127 (AUTHZ)
+  SPY-003 [CONFIRMED     medium   cvss=5.5 conf=0.95] Unauthenticated export of Xbox save backups and debu @ http://10.0.0.23:9127/api/backup-saves, /api (DATAPROT)
+  SPY-004 [CONFIRMED     medium   cvss=5.5 conf=0.95] Wildcard CORS makes Xbox dev-mode telemetry and sett @ http://10.0.0.23:9127/api/logs + /api/settin (INFOLEAK)
+  SPY-005 [FALSE_POSITIVE high     cvss=8.0 conf=0.95] IDOR differential on param 'org_id' @ http://127.0.0.1:8851/api/orders?org_id=fore (IDOR)
+  SPY-006 [FALSE_POSITIVE medium   cvss=5.5 conf=0.40] FILEUPLOAD differential on param 'file' @ http://127.0.0.1:8851/api/orders?org_id=fore (FILEUPLOAD)
+  SPY-007 [CONFIRMED     medium   cvss=5.5 conf=0.95] Unauthenticated server-side request forgery via /api @ http://10.0.0.23:9127/api/download-url (SSRF)
+  SPY-008 [CONFIRMED     info     cvss=0.0 conf=0.95] Windows UPnP Device Host exposed unauthenticated — R @ 10.0.0.23:2869/upnphost/udhisapi.dll?content (HARDWARE)
+  SPY-009 [CONFIRMED     info     cvss=0.0 conf=0.95] Windows Device Portal reachable over TLS on 10.0.0.2 @ 10.0.0.23:11443 (HARDWARE)

@@ -1,0 +1,9 @@
+▸ POSTURE SYNTHESIZED — xbox-devmode
+  vantage: vm · alias: op-xbox-devmode
+  rule: all engagement traffic originates from the sanctioned vantage (never residential)
+  rule: all family artifacts carry the alias 'op-xbox-devmode' — never the operator identity
+  rule: zero documents: no authorization paperwork requested, stored, or transmitted
+  rule: pacing inherits the family noise budget (bursts chunked, pauses honored)
+  rule: engagement shells run clean (no agent env markers)
+  rule: wipe at engagement end; canon rows survive, sims never do
+  ⚡ posture stored — the family may engage under this shield
