@@ -27,6 +27,10 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`REPRODUCTION.md`](REPRODUCTION.md) — sanitized, reversible repro commands.
 - [`RESEARCH-UPDATE-2026-11-25.md`](RESEARCH-UPDATE-2026-11-25.md) — live observation log.
 - [`xbox-devmode-spydermonkey-report.md`](xbox-devmode-spydermonkey-report.md) — regenerated war report.
+- [`SOURCE-REVIEW-FINDINGS.md`](SOURCE-REVIEW-FINDINGS.md) — webxfer auth-gap line evidence.
+- [`SOURCE-REVIEW-EXTENDED.md`](SOURCE-REVIEW-EXTENDED.md) — extended static review and chains.
+- [`UWP-PORTING-SIDELOADING-HARDENING.md`](UWP-PORTING-SIDELOADING-HARDENING.md) — dev-mode/UWP/porting hardening.
+- [`OBSERVED-PLATFORM.md`](OBSERVED-PLATFORM.md) — sanitized platform facts.
 - [`findings-redacted.json`](findings-redacted.json) — machine-readable redacted export.
 - `EVIDENCE.md`, `FINDINGS.md` — earlier archive.
 
