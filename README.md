@@ -22,6 +22,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 ## Repo index
 
 - [`ATTACK-VECTORS.md`](ATTACK-VECTORS.md) — finding table, surface map, chains, mitigations.
+- [`DEV-COMMUNITY-FAQ.md`](DEV-COMMUNITY-FAQ.md) — myths vs evidence, dev/porting/jailbreak framing.
 - [`DEV-COMMUNITY-NOTES.md`](DEV-COMMUNITY-NOTES.md) — dev-kit risk model, UWP/porting notes, responsible jailbreak framing.
 - [`ENDPOINT-INVENTORY.md`](ENDPOINT-INVENTORY.md) — observed endpoints and auth status.
 - [`REPRODUCTION.md`](REPRODUCTION.md) — sanitized, reversible repro commands.
