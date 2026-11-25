@@ -37,6 +37,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`DISCLOSURE-TEMPLATE.md`](DISCLOSURE-TEMPLATE.md) — responsible disclosure template.
 - [`DISCLOSURE-PLAYBOOK.md`](DISCLOSURE-PLAYBOOK.md) — disclosure triage/playbook.
 - [`UWP-SIDELOADING-PORTING-CHECKLIST.md`](UWP-SIDELOADING-PORTING-CHECKLIST.md) — UWP/sideloading/porting hardening checklist.
+- [`PRIORITIZED-REMEDIATION.md`](PRIORITIZED-REMEDIATION.md) — P0-P3 remediation priorities.
 - [`DEV-KIT-HARDENING-BASELINE.md`](DEV-KIT-HARDENING-BASELINE.md) — actionable dev kit hardening baseline.
 - [`KNOWN-UNPROVEN-HYPOTHESES.md`](KNOWN-UNPROVEN-HYPOTHESES.md) — confirmed vs unproven hypothesis register.
 - [`SAFE-LAB-SCENARIOS.md`](SAFE-LAB-SCENARIOS.md) — authorized reversible lab scenarios.
