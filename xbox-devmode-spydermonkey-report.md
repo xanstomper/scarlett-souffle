@@ -1,6 +1,6 @@
 # SPYDERMONKEY War Report — xbox-devmode
 
-_generated 2026-11-25T20:20:08.243966+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
+_generated 2026-11-25T20:21:27.362058+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
 
 ## Authorization & scope
 
@@ -12,9 +12,9 @@ _generated 2026-11-25T20:20:08.243966+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 ## Executive summary
 
-- **18** finding(s) registered · **16** confirmed with 3-gate evidence
-- severity mix: high=5, info=3, low=1, medium=9
-- risk score: **78.5** · cvss avg 5.11 · max 8.0
+- **19** finding(s) registered · **17** confirmed with 3-gate evidence
+- severity mix: high=5, info=3, low=2, medium=9
+- risk score: **81.0** · cvss avg 4.97 · max 8.0
 - **1** chain candidate(s) — low findings combining into high-impact chains
 - **16** detection rule(s) mirrored (kage)
 - harvest crown rows: 0 (shukaku pricing)
@@ -26,7 +26,7 @@ _generated 2026-11-25T20:20:08.243966+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 |---|---|---|
 | T-UNKNOWN | 11 | 10 |
 | T1046 | 1 | 1 |
-| T1068 | 4 | 3 |
+| T1068 | 5 | 4 |
 | T1083 | 1 | 1 |
 | T1190 | 1 | 1 |
 
@@ -54,6 +54,7 @@ _5 technique(s) touched by the engagement's registered findings_
 | SPY-016 | medium | 5.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP screenshot endpoint leaks live TV frame | https://10.0.0.23:11443/ext/screenshot?download=true |
 | SPY-017 | low | 2.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP package-install state disclosure | https://10.0.0.23:11443/api/app/packagemanager/state |
 | SPY-018 | medium | 5.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP filesystem directory listing (knownfolderid) | https://10.0.0.23:11443/api/filesystem/apps/files?knownfolderid=Documents |
+| SPY-019 | low | 2.5 | CONFIRMED | AUTHZ | Unauthenticated UPnP ConnectionManager SOAP query + SCPD exposure | http://10.0.0.23:2869/upnphost/udhisapi.dll (ConnectionManager:1) |
 
 ### SPY-001 — SMBv1 absent — MS17-010/EternalBlue lane cleared [CONFIRMED · info · conf 0.95]
 - class: RECON · asset: 10.0.0.23:445
@@ -146,6 +147,11 @@ control: differential is not specific (hypothesis-grade)
 - evidence quality: 3-gate
 - proof: baseline: WDP filesystem listing expected to require authentication; attack: anonymous HTTPS GET /api/filesystem/apps/files?knownfolderid=Documents (and Downloads/Pictures/Music/Videos) with no credentials; diff: HTTP 200 JSON with FullPath Q:\Users\UserMgr1\Documents\ and Items array including file names, FileSize, timestamps — same for 5 user folders; Desktop/Profiles/InstalledGames returned 403 unsupported; no file contents fetched, no secrets retained
 
+### SPY-019 — Unauthenticated UPnP ConnectionManager SOAP query + SCPD exposure [CONFIRMED · low · conf 0.95]
+- class: AUTHZ · asset: http://10.0.0.23:2869/upnphost/udhisapi.dll (ConnectionManager:1) · CWE CWE-306 · WSTG WSTG-ATHZ-01 · ATT&CK T1068
+- evidence quality: 3-gate
+- proof: baseline: UPnP ConnectionManager control expected to be restricted; attack: read-only GET of SCPDURL (4280B) parsed actions GetProtocolInfo/GetCurrentConnectionIDs/GetCurrentConnectionInfo, then anonymous SOAP POST GetProtocolInfo; diff: HTTP 200 GetProtocolInfoResponse with S Source empty and Sink listing DLNA protocol/codec profile strings — third UPnP service exposed unauth beyond previously registered RenderingControl/AVTransport
+
 ## Attack chains
 
 - **CH-001** [info_disclosure_ssrf] high (conf 0.75): SPY-003 + SPY-007 → info disclosure names internal hosts → SSRF pivots to them
@@ -187,7 +193,7 @@ control: differential is not specific (hypothesis-grade)
 
 ## Evidence integrity
 
-- ledger rows: 18 · signed: 18 · unsigned: 0
+- ledger rows: 19 · signed: 19 · unsigned: 0
 - integrity errors: 0
 
 ## Closeout
