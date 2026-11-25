@@ -21,6 +21,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 
 ## Repo index
 
+- [`RESEARCH-SESSION-1.md`](RESEARCH-SESSION-1.md) — 5-hour push R1 read-only sweep.
 - [`EXECUTIVE-SUMMARY.md`](EXECUTIVE-SUMMARY.md) — non-technical executive summary.
 - [`ATTACK-VECTORS.md`](ATTACK-VECTORS.md) — finding table, surface map, chains, mitigations.
 - [`GLOSSARY.md`](GLOSSARY.md) — dev-mode/UWP/porting/security terminology.
