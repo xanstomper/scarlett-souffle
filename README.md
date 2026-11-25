@@ -38,6 +38,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`DEVICE-PORTAL-ANON-EXPOSURE.md`](DEVICE-PORTAL-ANON-EXPOSURE.md) — redacted anonymous WDP endpoint/data map.
 - [`BUILD-PACKAGING-TRUST-BOUNDARIES.md`](BUILD-PACKAGING-TRUST-BOUNDARIES.md) — build/deploy script trust-boundary notes.
 - [`HOST-MODULE-REVIEW.md`](HOST-MODULE-REVIEW.md) — steam_client/ui/swapchain static review.
+- [`CRYPTO-EMULATION-MAP.md`](CRYPTO-EMULATION-MAP.md) — crypto/encryption and UWP emulation/container surfaces (structure only).
 - [`GUEST-BRIDGE-REVIEW.md`](GUEST-BRIDGE-REVIEW.md) — guest/bridge trust-boundary static review.
 - [`EVIDENCE-PACK-MANIFEST.md`](EVIDENCE-PACK-MANIFEST.md) — shareable file manifest with hashes/redaction notes.
 - [`EVIDENCE-INTEGRITY-CHECKLIST.md`](EVIDENCE-INTEGRITY-CHECKLIST.md) — 3-gate evidence/redaction/publication checklist.
