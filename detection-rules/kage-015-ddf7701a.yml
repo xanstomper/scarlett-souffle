@@ -1,0 +1,14 @@
+title: "Suspicious: https://10.0.0.23:11443/api/app/packagemanager/state"
+id: "ddf7701a-9321-45ba-a249-6503ce9f7869"
+status: "experimental"
+description: "Mirrored from confirmed attack: https://10.0.0.23:11443/api/app/packagemanager/state (attack ref: https://10.0.0.23:11443/api/app/packagemanager/state; match: documented class signature)."
+logsource:
+    service: "app"
+detection:
+    custom: true
+    condition: "sel"
+falsepositives:
+    - "none known"
+level: "medium"
+tags:
+    - "attack.t1592"

@@ -1,0 +1,15 @@
+title: "Path traversal sequence in request"
+id: "57492b36-ace7-478c-a3db-58d622aba62d"
+status: "experimental"
+description: "Mirrored from confirmed attack: path traversal (attack ref: https://10.0.0.23:11443/api/filesystem/apps/files?knownfolderid=Documents; match: traversal sequence in uri + 200)."
+logsource:
+    service: "web"
+detection:
+    uri_re: "(\.\./|\.\.\\|%2e%2e)"
+    status: 200
+    condition: "sel"
+falsepositives:
+    - "none common"
+level: "high"
+tags:
+    - "attack.t1083"

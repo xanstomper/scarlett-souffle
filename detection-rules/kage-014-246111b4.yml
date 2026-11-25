@@ -1,0 +1,14 @@
+title: "Suspicious: https://10.0.0.23:11443/ext/screenshot?download=true"
+id: "246111b4-55ad-4e15-a9ba-faedeadf3dc6"
+status: "experimental"
+description: "Mirrored from confirmed attack: https://10.0.0.23:11443/ext/screenshot?download=true (attack ref: https://10.0.0.23:11443/ext/screenshot?download=true; match: documented class signature)."
+logsource:
+    service: "app"
+detection:
+    custom: true
+    condition: "sel"
+falsepositives:
+    - "none known"
+level: "medium"
+tags:
+    - "attack.t1592"

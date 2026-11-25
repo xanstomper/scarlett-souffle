@@ -1,6 +1,6 @@
 # SPYDERMONKEY War Report — xbox-devmode
 
-_generated 2026-11-25T20:19:08.466063+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
+_generated 2026-11-25T20:20:08.243966+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
 
 ## Authorization & scope
 
@@ -16,7 +16,7 @@ _generated 2026-11-25T20:19:08.466063+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 - severity mix: high=5, info=3, low=1, medium=9
 - risk score: **78.5** · cvss avg 5.11 · max 8.0
 - **1** chain candidate(s) — low findings combining into high-impact chains
-- **13** detection rule(s) mirrored (kage)
+- **16** detection rule(s) mirrored (kage)
 - harvest crown rows: 0 (shukaku pricing)
 - methodology: 4/13 phases complete
 
@@ -165,6 +165,9 @@ control: differential is not specific (hypothesis-grade)
 - KAGE-011 — rule
 - KAGE-012 — rule
 - KAGE-013 — rule
+- KAGE-014 — rule
+- KAGE-015 — rule
+- KAGE-016 — rule
 
 ## Phase coverage
 
