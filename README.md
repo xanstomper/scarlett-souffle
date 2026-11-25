@@ -31,6 +31,9 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`SOURCE-REVIEW-EXTENDED.md`](SOURCE-REVIEW-EXTENDED.md) — extended static review and chains.
 - [`UWP-PORTING-SIDELOADING-HARDENING.md`](UWP-PORTING-SIDELOADING-HARDENING.md) — dev-mode/UWP/porting hardening.
 - [`OBSERVED-PLATFORM.md`](OBSERVED-PLATFORM.md) — sanitized platform facts.
+- [`DEVICE-PORTAL-ANON-EXPOSURE.md`](DEVICE-PORTAL-ANON-EXPOSURE.md) — redacted anonymous WDP endpoint/data map.
+- [`GUEST-BRIDGE-REVIEW.md`](GUEST-BRIDGE-REVIEW.md) — guest/bridge trust-boundary static review.
+- [`DISCLOSURE-TEMPLATE.md`](DISCLOSURE-TEMPLATE.md) — responsible disclosure template.
 - [`findings-redacted.json`](findings-redacted.json) — machine-readable redacted export.
 - `EVIDENCE.md`, `FINDINGS.md` — earlier archive.
 
