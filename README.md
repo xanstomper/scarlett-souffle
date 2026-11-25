@@ -4,7 +4,13 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 
 > **Scope/walls:** declared estate only; validation-only; NO-GAIN; no persistence; no third-party contact; no credential guessing/bruteforce; no destructive payloads. Reversible tests restored immediately. Sensitive identifiers redacted in public artifacts.
 
-## Key confirmed findings (25 confirmed / 27 rows)
+## Key confirmed findings (31 confirmed / 33 rows)
+
+- **SPY-033 HIGH 7.5** — Unauth **live screen capture** `/ext/screenshot`: 1920×1080 PNG, frames differ 2s apart (surveillance of whatever is on screen).
+- **SPY-028 HIGH 7.5** — Unauth dashboard `/api/status` publishes the live `control_code` that `/api/controls/*` (401) is the only gate for.
+- **SPY-030 MEDIUM 7.0** — Unauth `upload-file` (200 on a zero-byte body) + unauth `launch/<name>` = drop-and-run in a game directory; still guest, not SystemOS.
+- **SPY-031 MEDIUM 5.3** — UPnP `SetAVTransportURI` accepted anonymously: renderer control, not just read-only queries.
+- **SPY-032 INFO** — Estate inventory: 39 dev settings, MediaRenderer tree, TLS cert (self-signed, 3-year), SMB/SSH posture.
 
 - **SPY-022 HIGH 7.5** — Unauth WDP file **content** read (not just listing), including cross-package read of a developer package's private `LocalState` — system packages are refused (`File access is only allowed for developer packages`), traversal returns 400.
 - **SPY-002 HIGH 8.0** — Unauth dev dashboard control PIN disclosure -> Bearer pairing -> control session (revoked, no input injected).
@@ -23,6 +29,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 ## Repo index
 
 - [`DEVPORTAL-TOOLING-MAP.md`](DEVPORTAL-TOOLING-MAP.md) — WDP client/deploy tooling surface review.
+- [`ECOSYSTEM-SURFACE-MAP.md`](ECOSYSTEM-SURFACE-MAP.md) — every listener, WDP endpoint matrix (200/404), 9127 route table with auth, UPnP tree, TLS/SSH/SMB, settings inventory.
 - [`RESEARCH-SESSION-6.md`](RESEARCH-SESSION-6.md) — kernel/hypervisor/bootrom reachability verdict, cross-package dev `LocalState` read, cleared WDP write/traversal/SAMR lanes.
 - [`KERNEL-HYPERVISOR-BOOTROM-VERDICT.md`](KERNEL-HYPERVISOR-BOOTROM-VERDICT.md) — one-page verdict: no remote path to boot chain; patched kernel LPEs; what remains.
 - [`RESEARCH-SESSION-5.md`](RESEARCH-SESSION-5.md) — full-port ceiling, TLS posture correction, SPY-020.

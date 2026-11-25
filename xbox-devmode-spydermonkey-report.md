@@ -1,6 +1,6 @@
 # SPYDERMONKEY War Report — xbox-devmode
 
-_generated 2026-11-25T21:03:01.446676+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
+_generated 2026-11-25T22:06:48.211579+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
 
 ## Authorization & scope
 
@@ -12,9 +12,9 @@ _generated 2026-11-25T21:03:01.446676+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 ## Executive summary
 
-- **27** finding(s) registered · **25** confirmed with 3-gate evidence
-- severity mix: high=6, info=7, low=3, medium=11
-- risk score: **102.5** · cvss avg 4.29 · max 8.0
+- **33** finding(s) registered · **31** confirmed with 3-gate evidence
+- severity mix: high=8, info=8, low=3, medium=14
+- risk score: **135.0** · cvss avg 4.6 · max 8.0
 - **1** chain candidate(s) — low findings combining into high-impact chains
 - **16** detection rule(s) mirrored (kage)
 - harvest crown rows: 0 (shukaku pricing)
@@ -24,14 +24,18 @@ _generated 2026-11-25T21:03:01.446676+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 | technique | findings | confirmed |
 |---|---|---|
-| T-UNKNOWN | 13 | 12 |
+| T-UNKNOWN | 14 | 13 |
 | T1046 | 2 | 2 |
 | T1068 | 8 | 7 |
-| T1083 | 2 | 2 |
+| T1078 | 1 | 1 |
+| T1083 | 3 | 3 |
+| T1105 | 1 | 1 |
+| T1113 | 1 | 1 |
 | T1190 | 1 | 1 |
+| T1546 | 1 | 1 |
 | T1557 | 1 | 1 |
 
-_6 technique(s) touched by the engagement's registered findings_
+_10 technique(s) touched by the engagement's registered findings_
 
 ## Findings
 
@@ -52,7 +56,7 @@ _6 technique(s) touched by the engagement's registered findings_
 | SPY-013 | medium | 5.5 | CONFIRMED | AUTHZ | Unauthenticated UPnP RenderingControl SOAP query (GetVolume) on Xbox DeviceHost | http://10.0.0.23:2869/upnphost/udhisapi.dll?control=uuid:b0b712e4-7a75-436b-9373-b24e61bb0daa+urn:upnp-org:serviceId:RenderingControl |
 | SPY-014 | high | 8.0 | CONFIRMED | INFOLEAK | Unauthenticated Device Portal leaks device identifiers, network config, and package inventory | https://10.0.0.23:11443/ext/xbox/info, /api/networking/ipconfig, /api/app/packagemanager/packages |
 | SPY-015 | high | 8.0 | CONFIRMED | INFOLEAK | Unauthenticated Device Portal user enumeration/disclosure (/ext/user) | https://10.0.0.23:11443/ext/user |
-| SPY-016 | medium | 5.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP screenshot endpoint leaks live TV frame | https://10.0.0.23:11443/ext/screenshot?download=true |
+| SPY-016 | medium | 7.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP screenshot endpoint leaks live TV frame | https://10.0.0.23:11443/ext/screenshot?download=true |
 | SPY-017 | low | 2.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP package-install state disclosure | https://10.0.0.23:11443/api/app/packagemanager/state |
 | SPY-018 | medium | 5.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP filesystem directory listing (knownfolderid) | https://10.0.0.23:11443/api/filesystem/apps/files?knownfolderid=Documents |
 | SPY-019 | low | 2.5 | CONFIRMED | AUTHZ | Unauthenticated UPnP ConnectionManager SOAP query + SCPD exposure | http://10.0.0.23:2869/upnphost/udhisapi.dll (ConnectionManager:1) |
@@ -64,6 +68,12 @@ _6 technique(s) touched by the engagement's registered findings_
 | SPY-025 | info | 0.0 | CONFIRMED | RECON | CLEARED LANE — public SystemOS kernel LPEs are patched on build 26100.9662 (Collateral Damage / Artifice) | 10.0.0.23 |
 | SPY-026 | info | 0.0 | CONFIRMED | HARDWARE | NO NETWORK SURFACE — bootrom and hypervisor unreachable from LAN (physical glitch only) | 10.0.0.23 |
 | SPY-027 | info | 0.0 | CONFIRMED | AUTHZ | CLEARED LANE — WDP filesystem path traversal and null-session SAMR both denied | https://10.0.0.23:11443/api/filesystem/apps/files |
+| SPY-028 | high | 7.5 | CONFIRMED | AUTHZ | Unauth dashboard hands out the live control pairing code; pair endpoint needs only that code | http://10.0.0.23:9127/api/status |
+| SPY-029 | medium | 6.5 | CONFIRMED | INFOLEAK | Unauth dashboard read surface: game library, launcher log, full file tree, Steam library, settings, pairing QR | http://10.0.0.23:9127 |
+| SPY-030 | medium | 7.0 | CONFIRMED | AUTHZ | Anonymous file write into a game directory, and anonymous launch of that game (guest code drop primitive) | http://10.0.0.23:9127/api/upload-file |
+| SPY-031 | medium | 5.3 | CONFIRMED | AUTHZ | UPnP AVTransport accepts anonymous SetAVTransportURI (control, not just queries) | http://10.0.0.23:2869/upnphost/udhisapi.dll |
+| SPY-032 | info | 0.0 | CONFIRMED | RECON | Ecosystem inventory: 39 dev settings, MediaRenderer tree, TLS cert, SMB dialects, SSH methods | 10.0.0.23 |
+| SPY-033 | high | 7.5 | CONFIRMED | SURVEILLANCE | Unauthenticated live screen capture of the console (1920x1080 PNG) | https://10.0.0.23:11443/ext/screenshot |
 
 ### SPY-001 — SMBv1 absent — MS17-010/EternalBlue lane cleared [CONFIRMED · info · conf 0.95]
 - class: RECON · asset: 10.0.0.23:445
@@ -201,6 +211,36 @@ control: differential is not specific (hypothesis-grade)
 - evidence quality: 3-gate
 - proof: baseline: WDP path param is concatenated into the package root, so traversal was the question; attack: anonymous GET with path=..\..\.., ..\..\..\..\..\Windows, ..\..\..\..\..\Windows\System32\drivers\etc, and rpcclient -N -c 'querydominfo; enumdomusers' against 10.0.0.23; diff: traversal returned HTTP 400 on every depth, and SAMR returned NT_STATUS_ACCESS_DENIED while smbclient -N //10.0.0.23/IPC$ ls returned ACCESS_DENIED — no out-of-root read, no anonymous RPC enumeration
 
+### SPY-028 — Unauth dashboard hands out the live control pairing code; pair endpoint needs only that code [CONFIRMED · high · conf 0.95]
+- class: AUTHZ · asset: http://10.0.0.23:9127/api/status · CWE CWE-306 · WSTG WSTG-ATHN-01 · ATT&CK T1078
+- evidence quality: 3-gate
+- proof: baseline: /api/controls/pair and /api/controls/leave return 401 without a token, implying the code gates control; attack: anonymous GET /api/status returns control_code plus running state; diff: control_code stable across two fetches (<redacted>, redacted) with running=true, and POST /api/controls/pair with empty JSON returns 401 — so the only secret needed to pair is published unauthenticated on the same interface; no input was injected and no pair session was opened
+
+### SPY-029 — Unauth dashboard read surface: game library, launcher log, full file tree, Steam library, settings, pairing QR [CONFIRMED · medium · conf 0.95]
+- class: INFOLEAK · asset: http://10.0.0.23:9127 · CWE CWE-200 · WSTG WSTG-CONF-05 · ATT&CK T1083
+- evidence quality: 3-gate
+- proof: baseline: LAN dashboard expected to gate project and host data; attack: anonymous GETs only; diff: /games 200 (game name, exe, appid, arch, compat), /api/logs 200 16,367B of host launcher log incl. guest handle/park internals, /api/list-files?game=Cuphead 200 62,166B (813 files with sizes incl. .tiramisu/profile.json), /api/steam/library 200, /api/steam/status 200, /api/settings 200, /api/qr.svg 200 4,346B SVG (Steam sign-in QR); paired control was not exercised
+
+### SPY-030 — Anonymous file write into a game directory, and anonymous launch of that game (guest code drop primitive) [CONFIRMED · medium · conf 0.95]
+- class: AUTHZ · asset: http://10.0.0.23:9127/api/upload-file · CWE CWE-434 · WSTG WSTG-ATHZ-02 · ATT&CK T1105
+- evidence quality: 3-gate
+- proof: baseline: uploading into a game dir and launching a guest should require the control token that /api/controls requires; attack: POST /api/upload-file?game=Cuphead&rel=probe.txt with a zero-length body (no auth header); diff: HTTP 200 {"ok":true,"size":0} and /api/list-files then shows probe.txt size 0, proving the write path executed with no auth; POST /api/launch/ZZZ_NOT_A_GAME_ZZZ returned 404 'game not found', proving the launch handler also runs unauthenticated; no PE was uploaded and no game was launched. Side effect disclosed: the write triggered the dashboard's own rescan/autopilot, which stopped the running guest (Cuphead) — clean up by deleting DevelopmentFiles/Cuphead/probe.txt (0B); WDP DELETE is 403 anonymously so it needs the operator's credentials
+
+### SPY-031 — UPnP AVTransport accepts anonymous SetAVTransportURI (control, not just queries) [CONFIRMED · medium · conf 0.95]
+- class: AUTHZ · asset: http://10.0.0.23:2869/upnphost/udhisapi.dll · CWE CWE-306 · WSTG WSTG-ATHN-01 · ATT&CK T1546
+- evidence quality: 3-gate
+- proof: baseline: SPY-013 proved read-only SOAP queries only; attack: anonymous SOAP POST to the AVTransport control URL with SOAPAction SetAVTransportURI and an empty CurrentURI (no media, no playback); diff: HTTP 200 with a SetAVTransportURIResponse envelope instead of a 401/501 — the console processes state-changing renderer actions from any LAN host; no media was set and nothing played
+
+### SPY-032 — Ecosystem inventory: 39 dev settings, MediaRenderer tree, TLS cert, SMB dialects, SSH methods [CONFIRMED · info · conf 0.95]
+- class: RECON · asset: 10.0.0.23 · CWE CWE-200
+- evidence quality: 3-gate
+- proof: baseline: document the estate's config surface; attack: anonymous GET /ext/settings, SSDP M-SEARCH, UPnP description fetch, openssl s_client, nmap; diff: 39 settings across Audio/Identity/Localization/Network/Power/Preferences/User/Video incl. SandboxId, Hostname, AutoBoot, AutoSignInUser, WirelessRadioSettings (values withheld); SSDP root device uuid redacted, MediaRenderer with RenderingControl+AVTransport+ConnectionManager on 2869; TLS cert CN=10.0.0.23 issued by 'Microsoft Windows Web Management (Test) (XBOX)', SAN DNS:XBOX/localhost/IP, valid 2026-11-22 to 2029-11-21; SMB2 signing enabled but not required; SSH offers publickey,password,keyboard-interactive
+
+### SPY-033 — Unauthenticated live screen capture of the console (1920x1080 PNG) [CONFIRMED · high · conf 0.95]
+- class: SURVEILLANCE · asset: https://10.0.0.23:11443/ext/screenshot · CWE CWE-306 · WSTG WSTG-ATHN-01 · ATT&CK T1113
+- evidence quality: 3-gate
+- proof: baseline: /ext/screenshot is a user-facing capture of whatever is on the console screen (gamertag, messages, notifications); attack: anonymous HTTPS GET with no cookie/token, repeated 2s apart; diff: HTTP 200 image/png, 2,105,240B then 2,055,437B, md5 53f9dda7.../784f7318..., PNG 1920x1080 8-bit truecolor — differing frames prove live capture, not a static asset; read-only, image not retained
+
 ## Attack chains
 
 - **CH-001** [info_disclosure_ssrf] high (conf 0.75): SPY-003 + SPY-007 → info disclosure names internal hosts → SSRF pivots to them
@@ -242,8 +282,8 @@ control: differential is not specific (hypothesis-grade)
 
 ## Evidence integrity
 
-- ledger rows: 27 · signed: 27 · unsigned: 0
-- integrity errors: 0
+- ledger rows: 33 · signed: 33 · unsigned: 0
+- integrity errors: 1
 
 ## Closeout
 
