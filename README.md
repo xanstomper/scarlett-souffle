@@ -47,6 +47,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`OBSERVED-HTTP-MATRIX.md`](OBSERVED-HTTP-MATRIX.md) — redacted observed HTTP response matrix.
 - [`SELF-AUDIT-QUICKCHECK.sh`](SELF-AUDIT-QUICKCHECK.sh) — owner read-only self-audit script.
 - [`WDP-FIELD-DICTIONARY.md`](WDP-FIELD-DICTIONARY.md) — redacted WDP field-level data dictionary.
+- [`QUICKSTART-AUDIT-REPORT.md`](QUICKSTART-AUDIT-REPORT.md) — owner read-only audit and reporting workflow.
 - [`REPORT-PACK-INDEX.md`](REPORT-PACK-INDEX.md) — consolidated report pack index.
 - [`findings-redacted.json`](findings-redacted.json) — machine-readable redacted export.
 - `EVIDENCE.md`, `FINDINGS.md` — earlier archive.
