@@ -43,6 +43,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`KNOWN-UNPROVEN-HYPOTHESES.md`](KNOWN-UNPROVEN-HYPOTHESES.md) — confirmed vs unproven hypothesis register.
 - [`SAFE-LAB-SCENARIOS.md`](SAFE-LAB-SCENARIOS.md) — authorized reversible lab scenarios.
 - [`LAB-TEST-MATRIX.md`](LAB-TEST-MATRIX.md) — safe-to-lab test prioritization.
+- [`RESPONSE-KEY-SNAPSHOTS.md`](RESPONSE-KEY-SNAPSHOTS.md) — redacted anonymous response key/type snapshots.
 - [`OBSERVED-HTTP-MATRIX.md`](OBSERVED-HTTP-MATRIX.md) — redacted observed HTTP response matrix.
 - [`SELF-AUDIT-QUICKCHECK.sh`](SELF-AUDIT-QUICKCHECK.sh) — owner read-only self-audit script.
 - [`WDP-FIELD-DICTIONARY.md`](WDP-FIELD-DICTIONARY.md) — redacted WDP field-level data dictionary.
