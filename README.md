@@ -49,6 +49,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`GAME-DUMP-ENTITLEMENT-DEFENSIVE.md`](GAME-DUMP-ENTITLEMENT-DEFENSIVE.md) — why dumping is walled + defensive content model.
 - [`DEV-CONTAINER-API-MAP.md`](DEV-CONTAINER-API-MAP.md) — guest .def export inventory / emulation boundary map.
 - [`CRYPTO-EMULATION-MAP.md`](CRYPTO-EMULATION-MAP.md) — crypto/encryption and UWP emulation/container surfaces (structure only).
+- [`DEV-CONTAINER-BOUNDARY-MAP.md`](DEV-CONTAINER-BOUNDARY-MAP.md) — guest/host boundary map from static review.
 - [`GUEST-BRIDGE-REVIEW.md`](GUEST-BRIDGE-REVIEW.md) — guest/bridge trust-boundary static review.
 - [`EVIDENCE-PACK-MANIFEST.md`](EVIDENCE-PACK-MANIFEST.md) — shareable file manifest with hashes/redaction notes.
 - [`EVIDENCE-INTEGRITY-CHECKLIST.md`](EVIDENCE-INTEGRITY-CHECKLIST.md) — 3-gate evidence/redaction/publication checklist.
