@@ -1,29 +1,20 @@
-# Research Session 1 — 5-hour push (R1 sweep)
+# Research Session 1 — 5-hour push (R1/R2)
 
 Timer: 2026-11-25T11:45:25Z → 16:45:25Z. Scope: declared estate 10.0.0.23. Vendor-neutral language.
 
-## Read-only endpoint sweep (verified output)
-Tiramisu dashboard 9127 — all 200 with no auth:
-```
-/api/status      200 375B   /games       200 1159B  /api/settings 200 222B
-/api/logs        200 16226B /api/steam/* 200 127/408B  /api/qr.svg 200 4346B
-/controls        200 6252B
-```
-WDP 11443 — all 200 anonymous:
-```
-/api/os/info 187B  /api/os/devicefamily 31B  /ext/settings 10493B
-/ext/xbox/info 310B  /ext/user 182B  /api/networking/ipconfig 1894B
-/api/app/packagemanager/packages 49799B
-```
-UPnP: 1900/udp open, `Server: Microsoft-Windows/10.0 UPnP/1.0 UPnP-Device-Host/1.0`, device XML location exposed, MAC OUI E42AAC (Microsoft).
+## R1 — read-only endpoint sweep (verified output)
+Dashboard 9127 all 200 anon: `/api/status` 375B, `/games` 1159B, `/api/settings` 222B, `/api/logs` 16226B, `/api/steam/status` 127B, `/api/steam/library` 408B, `/api/qr.svg` 4346B, `/controls` 6252B.
+WDP 11443 all 200 anon: `/api/os/info` 187B, `/api/os/devicefamily` 31B, `/ext/settings` 10493B, `/ext/xbox/info` 310B, `/ext/user` 182B, `/api/networking/ipconfig` 1894B, `/api/app/packagemanager/packages` 49799B.
+UPnP: 1900/udp open, `Microsoft-Windows/10.0 UPnP/1.0 UPnP-Device-Host/1.0`, device XML location exposed, MAC OUI E42AAC (Microsoft).
+Live logs: 96 lines/9 normalized-unique (watchdog, trace gap, webxfer GAP-HTTP-ACCEPT/WORKERSTART) — no secret values in unauth log tail.
 
-## Live log analysis
-`/api/logs` 96 lines, 9 normalized-unique: watchdog memory ticks, `[tid=4556] gap: trace seq=689540`, `webxfer: GAP-HTTP-ACCEPT workers=0`, `webxfer: GAP-HTTP-WORKERSTART`. No secrets/tokens in unauth log tail. Confirms active web server + guest telemetry exposure.
+## R2 — NEW findings (3-gate, read-only)
+- **SPY-016 (medium)** unauth WDP `/ext/screenshot?download=true` → HTTP/2 200 PNG 1920x1080 15210B + fresh CSRF cookie. Live TV frame disclosure. Image not retained.
+- **SPY-017 (low)** unauth WDP `/api/app/packagemanager/state` → 200 JSON install state.
+- OPTIONS map: dashboard mutation endpoints return 204; WDP mutation endpoints OPTIONS=403 (CSRF/auth posture differs).
 
-## Deductions (evidence-backed)
-- Dashboard + WDP + UPnP remain unauthenticated and LAN-reachable — matches confirmed ledger (SPY-002/003/004/007/010/011/012/013/014/015).
-- No new endpoints beyond inventory; attack surface is stable, not expanding.
-- Log tail carries no sensitive values beyond what is already documented.
+## Ledger state
+17 rows, 15 CONFIRMED, 1 chain (CH-001), 13 KAGE detection rules. Report + redacted export refreshed.
 
 ## Walls held
-Read-only GETs only; no mutation, no third-party, no creds, no persistence/gain. Identifiers redacted.
+Read-only GETs/OPTIONS only; no mutation/creds/third-party/persistence/gain. Identifiers redacted.
