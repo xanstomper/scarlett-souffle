@@ -52,6 +52,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`DEV-CONTAINER-BOUNDARY-MAP.md`](DEV-CONTAINER-BOUNDARY-MAP.md) — guest/host boundary map from static review.
 - [`GUEST-BRIDGE-REVIEW.md`](GUEST-BRIDGE-REVIEW.md) — guest/bridge trust-boundary static review.
 - [`EVIDENCE-PACK-MANIFEST.md`](EVIDENCE-PACK-MANIFEST.md) — shareable file manifest with hashes/redaction notes.
+- [`OPERATOR-HYGIENE-NOTE.md`](OPERATOR-HYGIENE-NOTE.md) — operator posture/artifact hygiene findings.
 - [`EVIDENCE-INTEGRITY-CHECKLIST.md`](EVIDENCE-INTEGRITY-CHECKLIST.md) — 3-gate evidence/redaction/publication checklist.
 - [`DISCLOSURE-TEMPLATE.md`](DISCLOSURE-TEMPLATE.md) — responsible disclosure template.
 - [`DISCLOSURE-PLAYBOOK.md`](DISCLOSURE-PLAYBOOK.md) — disclosure triage/playbook.
