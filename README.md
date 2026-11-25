@@ -4,10 +4,12 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 
 > **Scope/walls:** declared estate only; validation-only; NO-GAIN; no persistence; no third-party contact; no credential guessing/bruteforce; no destructive payloads. Reversible tests restored immediately. Sensitive identifiers redacted in public artifacts.
 
-## Key confirmed findings (11 confirmed / 14 rows)
+## Key confirmed findings (13 confirmed / 15 rows)
 
 - **SPY-002 HIGH 8.0** — Unauth Tiramisu control PIN disclosure -> Bearer pairing -> control session (revoked, no input injected).
 - **SPY-012 HIGH** — Unauth WDP `/api/os/info` + `/ext/settings` leak OS build/platform/sandbox/dev settings/user presence.
+- **SPY-014 HIGH** — Unauth WDP leaks device identifiers (redacted), network config, 74 installed packages.
+- **SPY-015 HIGH** — Unauth WDP `/ext/user` user enumeration/profile fields (identifiers redacted).
 - **SPY-014 HIGH** — Unauth WDP leaks device identifiers (redacted), network config, 74 installed packages.
 - **SPY-007 MEDIUM** — Unauth SSRF via `/api/download-url` (console fetch diff, no file written).
 - **SPY-010 MEDIUM** — Unauth file-manifest disclosure via `/api/list-files`.
