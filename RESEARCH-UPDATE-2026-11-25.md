@@ -35,3 +35,6 @@ Source `src/host/webxfer.cpp` shows no auth checks before handlers for: `/api/st
 ## Device Portal anonymous surface observed
 - 200: `/`, `/api/os/info`, `/api/os/machinename`, `/api/os/devicefamily` (`Windows.Xbox`), `/ext/settings`
 - 404: `/api`, `/debug`, `/deploy`, `/header`, `/info`, `/resources`, `/ext/app`, `/ext/xboxlive`, `/ext/network`, `/ext/users`, `/ext/remoteaddress`, `/api/settings/developer`, `/ext/devices`
+
+## Added finding
+- **SPY-014** (high, INFOLEAK/CWE-200): anonymous WDP GETs exposed `/ext/xbox/info` (OsVersion/DevMode/OsEdition/ConsoleType + device identifiers redacted), `/api/networking/ipconfig` (4 adapters), `/api/app/packagemanager/packages` (74 installed packages). Read-only; sensitive identifiers redacted in public artifacts.

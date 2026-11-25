@@ -20,6 +20,7 @@
 | SPY-011 | medium 5.5 | AUTHZ | 9127 `/api/settings` | Unauth POST changed `show_qr` true->false->true; reversible proof. |
 | SPY-012 | **high** | INFOLEAK | 11443 `/api/os/info`, `/ext/settings` | Unauth Device Portal leaks OS build/platform/sandbox/dev settings and configured user identifier presence. Read-only. |
 | SPY-013 | medium 5.5 | AUTHZ | 2869 UPnP RenderingControl controlURL | Unauth SOAP GetVolume returned CurrentVolume=100; GetMute/GetTransportInfo also responded read-only. Mutating AVTransport/RenderingControl actions not invoked. |
+| SPY-014 | **high** | INFOLEAK | 11443 `/ext/xbox/info`, `/api/networking/ipconfig`, `/api/app/packagemanager/packages` | Unauth WDP leaks device identifiers (ConsoleId/DeviceId/SerialNumber/Devkit cert expiry - redacted), network adapter config, and 74 installed packages. Read-only. |
 
 ## Attack surface map (observed)
 
