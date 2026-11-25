@@ -51,6 +51,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`WDP-SOFTWARE-SURFACE.md`](WDP-SOFTWARE-SURFACE.md) — redacted anonymous package/software surface summary.
 - [`WDP-FIELD-DICTIONARY.md`](WDP-FIELD-DICTIONARY.md) — redacted WDP field-level data dictionary.
 - [`QUICKSTART-AUDIT-REPORT.md`](QUICKSTART-AUDIT-REPORT.md) — owner read-only audit and reporting workflow.
+- [`REDTEAM-DEVTEAM-HANDOFF.md`](REDTEAM-DEVTEAM-HANDOFF.md) — findings-to-fixes handoff.
 - [`REPORT-PACK-INDEX.md`](REPORT-PACK-INDEX.md) — consolidated report pack index.
 - [`findings-redacted.json`](findings-redacted.json) — machine-readable redacted export.
 - `EVIDENCE.md`, `FINDINGS.md` — earlier archive.
