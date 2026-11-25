@@ -22,6 +22,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 ## Repo index
 
 - [`DEVPORTAL-TOOLING-MAP.md`](DEVPORTAL-TOOLING-MAP.md) — WDP client/deploy tooling surface review.
+- [`RESEARCH-SESSION-2.md`](RESEARCH-SESSION-2.md) — anon endpoint expansion, SPY-016/017/018.
 - [`RESEARCH-SESSION-1.md`](RESEARCH-SESSION-1.md) — 5-hour push R1 read-only sweep.
 - [`EXECUTIVE-SUMMARY.md`](EXECUTIVE-SUMMARY.md) — non-technical executive summary.
 - [`ATTACK-VECTORS.md`](ATTACK-VECTORS.md) — finding table, surface map, chains, mitigations.

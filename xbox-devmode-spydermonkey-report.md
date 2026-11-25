@@ -1,6 +1,6 @@
 # SPYDERMONKEY War Report — xbox-devmode
 
-_generated 2026-11-25T11:48:01.994297+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
+_generated 2026-11-25T20:19:08.466063+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
 
 ## Authorization & scope
 
@@ -12,9 +12,9 @@ _generated 2026-11-25T11:48:01.994297+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 ## Executive summary
 
-- **17** finding(s) registered · **15** confirmed with 3-gate evidence
-- severity mix: high=5, info=3, low=1, medium=8
-- risk score: **73.0** · cvss avg 5.09 · max 8.0
+- **18** finding(s) registered · **16** confirmed with 3-gate evidence
+- severity mix: high=5, info=3, low=1, medium=9
+- risk score: **78.5** · cvss avg 5.11 · max 8.0
 - **1** chain candidate(s) — low findings combining into high-impact chains
 - **13** detection rule(s) mirrored (kage)
 - harvest crown rows: 0 (shukaku pricing)
@@ -27,9 +27,10 @@ _generated 2026-11-25T11:48:01.994297+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 | T-UNKNOWN | 11 | 10 |
 | T1046 | 1 | 1 |
 | T1068 | 4 | 3 |
+| T1083 | 1 | 1 |
 | T1190 | 1 | 1 |
 
-_4 technique(s) touched by the engagement's registered findings_
+_5 technique(s) touched by the engagement's registered findings_
 
 ## Findings
 
@@ -52,6 +53,7 @@ _4 technique(s) touched by the engagement's registered findings_
 | SPY-015 | high | 8.0 | CONFIRMED | INFOLEAK | Unauthenticated Device Portal user enumeration/disclosure (/ext/user) | https://10.0.0.23:11443/ext/user |
 | SPY-016 | medium | 5.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP screenshot endpoint leaks live TV frame | https://10.0.0.23:11443/ext/screenshot?download=true |
 | SPY-017 | low | 2.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP package-install state disclosure | https://10.0.0.23:11443/api/app/packagemanager/state |
+| SPY-018 | medium | 5.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP filesystem directory listing (knownfolderid) | https://10.0.0.23:11443/api/filesystem/apps/files?knownfolderid=Documents |
 
 ### SPY-001 — SMBv1 absent — MS17-010/EternalBlue lane cleared [CONFIRMED · info · conf 0.95]
 - class: RECON · asset: 10.0.0.23:445
@@ -139,6 +141,11 @@ control: differential is not specific (hypothesis-grade)
 - evidence quality: 3-gate
 - proof: baseline: install state is operator-only; attack: anonymous HTTPS GET /api/app/packagemanager/state; diff: HTTP 200 JSON {Code:0, CodeText:..., Reason:Success, Success:true} — reveals package operation state without auth.
 
+### SPY-018 — Unauthenticated WDP filesystem directory listing (knownfolderid) [CONFIRMED · medium · conf 0.95]
+- class: INFOLEAK · asset: https://10.0.0.23:11443/api/filesystem/apps/files?knownfolderid=Documents · CWE CWE-200 · WSTG WSTG-CONF-03 · ATT&CK T1083
+- evidence quality: 3-gate
+- proof: baseline: WDP filesystem listing expected to require authentication; attack: anonymous HTTPS GET /api/filesystem/apps/files?knownfolderid=Documents (and Downloads/Pictures/Music/Videos) with no credentials; diff: HTTP 200 JSON with FullPath Q:\Users\UserMgr1\Documents\ and Items array including file names, FileSize, timestamps — same for 5 user folders; Desktop/Profiles/InstalledGames returned 403 unsupported; no file contents fetched, no secrets retained
+
 ## Attack chains
 
 - **CH-001** [info_disclosure_ssrf] high (conf 0.75): SPY-003 + SPY-007 → info disclosure names internal hosts → SSRF pivots to them
@@ -177,7 +184,7 @@ control: differential is not specific (hypothesis-grade)
 
 ## Evidence integrity
 
-- ledger rows: 17 · signed: 17 · unsigned: 0
+- ledger rows: 18 · signed: 18 · unsigned: 0
 - integrity errors: 0
 
 ## Closeout
