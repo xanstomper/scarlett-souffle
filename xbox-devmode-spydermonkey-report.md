@@ -1,22 +1,22 @@
 # SPYDERMONKEY War Report — xbox-devmode
 
-_generated 2026-11-25T10:59:43.974727+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
+_generated 2026-11-25T11:48:01.994297+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox-devmode_
 
 ## Authorization & scope
 
 - engagement: **xbox-devmode**
-- objective: owner-authorized validation-only recon of my Xbox Series in dev mode at 10.0.0.23; identify exploitable surfaces useful to the dev dashboard project; no gain, no persistence
+- objective: owner-authorized validation-only recon of my Xbox Series in dev mode at 10.0.0.23; identify exploitable surfaces useful to the tiramisu project; no gain, no persistence
 - in-scope entries: 1 · deny entries: 0
 - expires: 2026-12-25T09:14:02.554768+00:00
 - rules: {'max_rate_rps': 10, 'passive_first': True, 'no_destructive': True, 'require_scope_check': True, 'allow_lab': True}
 
 ## Executive summary
 
-- **15** finding(s) registered · **13** confirmed with 3-gate evidence
-- severity mix: high=5, info=3, medium=7
-- risk score: **65.0** · cvss avg 5.23 · max 8.0
-- **0** chain candidate(s) — low findings combining into high-impact chains
-- **0** detection rule(s) mirrored (kage)
+- **17** finding(s) registered · **15** confirmed with 3-gate evidence
+- severity mix: high=5, info=3, low=1, medium=8
+- risk score: **73.0** · cvss avg 5.09 · max 8.0
+- **1** chain candidate(s) — low findings combining into high-impact chains
+- **13** detection rule(s) mirrored (kage)
 - harvest crown rows: 0 (shukaku pricing)
 - methodology: 4/13 phases complete
 
@@ -24,7 +24,7 @@ _generated 2026-11-25T10:59:43.974727+00:00 · SPYDERMONKEY 8.2.1 · scope: xbox
 
 | technique | findings | confirmed |
 |---|---|---|
-| T-UNKNOWN | 9 | 8 |
+| T-UNKNOWN | 11 | 10 |
 | T1046 | 1 | 1 |
 | T1068 | 4 | 3 |
 | T1190 | 1 | 1 |
@@ -50,6 +50,8 @@ _4 technique(s) touched by the engagement's registered findings_
 | SPY-013 | medium | 5.5 | CONFIRMED | AUTHZ | Unauthenticated UPnP RenderingControl SOAP query (GetVolume) on Xbox DeviceHost | http://10.0.0.23:2869/upnphost/udhisapi.dll?control=uuid:b0b712e4-7a75-436b-9373-b24e61bb0daa+urn:upnp-org:serviceId:RenderingControl |
 | SPY-014 | high | 8.0 | CONFIRMED | INFOLEAK | Unauthenticated Device Portal leaks device identifiers, network config, and package inventory | https://10.0.0.23:11443/ext/xbox/info, /api/networking/ipconfig, /api/app/packagemanager/packages |
 | SPY-015 | high | 8.0 | CONFIRMED | INFOLEAK | Unauthenticated Device Portal user enumeration/disclosure (/ext/user) | https://10.0.0.23:11443/ext/user |
+| SPY-016 | medium | 5.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP screenshot endpoint leaks live TV frame | https://10.0.0.23:11443/ext/screenshot?download=true |
+| SPY-017 | low | 2.5 | CONFIRMED | INFOLEAK | Unauthenticated WDP package-install state disclosure | https://10.0.0.23:11443/api/app/packagemanager/state |
 
 ### SPY-001 — SMBv1 absent — MS17-010/EternalBlue lane cleared [CONFIRMED · info · conf 0.95]
 - class: RECON · asset: 10.0.0.23:445
@@ -100,7 +102,7 @@ control: differential is not specific (hypothesis-grade)
 ### SPY-010 — Unauthenticated game file-manifest disclosure via /api/list-files [CONFIRMED · medium · conf 0.95]
 - class: INFOLEAK · asset: http://10.0.0.23:9127/api/list-files?game=hello · CWE CWE-200
 - evidence quality: 3-gate
-- proof: baseline: game directory contents are operator-private; attack: anonymous GET /api/list-files?game=hello with no auth; diff: HTTP 200 JSON listing 9 files with rel paths and sizes including .dev dashboard/aliases.json (95B), .dev dashboard/autopilot.json (54B), .dev dashboard/profile.json (405B), .dev dashboard/shims.txt (72B), .dev dashboard/xb_imports.csv (105B), .dev dashboard/xb_imports.json (189B), .dev dashboard/xb_profile.json (110B), guest_hello.exe (3072B), dev dashboard.profile.ini (255B); endpoint also accepts other game names and is CORS-wildcarded
+- proof: baseline: game directory contents are operator-private; attack: anonymous GET /api/list-files?game=hello with no auth; diff: HTTP 200 JSON listing 9 files with rel paths and sizes including .tiramisu/aliases.json (95B), .tiramisu/autopilot.json (54B), .tiramisu/profile.json (405B), .tiramisu/shims.txt (72B), .tiramisu/xb_imports.csv (105B), .tiramisu/xb_imports.json (189B), .tiramisu/xb_profile.json (110B), guest_hello.exe (3072B), tiramisu.profile.ini (255B); endpoint also accepts other game names and is CORS-wildcarded
 
 ### SPY-011 — Unauthenticated host settings tampering via /api/settings [CONFIRMED · medium · conf 0.95]
 - class: AUTHZ · asset: http://10.0.0.23:9127/api/settings · CWE CWE-306 · WSTG WSTG-ATHZ-01 · ATT&CK T1068
@@ -127,6 +129,36 @@ control: differential is not specific (hypothesis-grade)
 - evidence quality: 3-gate
 - proof: baseline: Device Portal user/account endpoint expected to require authentication; attack: anonymous HTTPS GET https://10.0.0.23:11443/ext/user with no credentials; diff: HTTP 200 returned Users array (1 user) exposing account presence and profile fields including UserId, EmailAddress, Gamertag, XboxUserId, AgeGroup, AutoSignIn, SignedIn; sensitive identifiers redacted in public artifacts. Read-only GET only.
 
+### SPY-016 — Unauthenticated WDP screenshot endpoint leaks live TV frame [CONFIRMED · medium · conf 0.95]
+- class: INFOLEAK · asset: https://10.0.0.23:11443/ext/screenshot?download=true · CWE CWE-200
+- evidence quality: 3-gate
+- proof: baseline: screenshot endpoint expected to require auth; attack: anonymous HTTPS GET /ext/screenshot?download=true with no credentials; diff: HTTP/2 200, content-disposition attachment filename=Screenshot_2026-11-25_03-47-31.png, PNG 1920x1080 15210 bytes, plus fresh CSRF-Token cookie. Image streamed to /dev/null-equivalent temp and not retained in repo.
+
+### SPY-017 — Unauthenticated WDP package-install state disclosure [CONFIRMED · low · conf 0.95]
+- class: INFOLEAK · asset: https://10.0.0.23:11443/api/app/packagemanager/state · CWE CWE-200
+- evidence quality: 3-gate
+- proof: baseline: install state is operator-only; attack: anonymous HTTPS GET /api/app/packagemanager/state; diff: HTTP 200 JSON {Code:0, CodeText:..., Reason:Success, Success:true} — reveals package operation state without auth.
+
+## Attack chains
+
+- **CH-001** [info_disclosure_ssrf] high (conf 0.75): SPY-003 + SPY-007 → info disclosure names internal hosts → SSRF pivots to them
+
+## Detection coverage (kage)
+
+- KAGE-001 — rule
+- KAGE-002 — rule
+- KAGE-003 — rule
+- KAGE-004 — rule
+- KAGE-005 — rule
+- KAGE-006 — rule
+- KAGE-007 — rule
+- KAGE-008 — rule
+- KAGE-009 — rule
+- KAGE-010 — rule
+- KAGE-011 — rule
+- KAGE-012 — rule
+- KAGE-013 — rule
+
 ## Phase coverage
 
 - completed   scope_analysis (barbican)
@@ -145,7 +177,7 @@ control: differential is not specific (hypothesis-grade)
 
 ## Evidence integrity
 
-- ledger rows: 15 · signed: 15 · unsigned: 0
+- ledger rows: 17 · signed: 17 · unsigned: 0
 - integrity errors: 0
 
 ## Closeout
