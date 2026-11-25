@@ -32,6 +32,7 @@ Evidence-backed documentation of an owner-authorized, validation-only assessment
 - [`UWP-PORTING-SIDELOADING-HARDENING.md`](UWP-PORTING-SIDELOADING-HARDENING.md) — dev-mode/UWP/porting hardening.
 - [`OBSERVED-PLATFORM.md`](OBSERVED-PLATFORM.md) — sanitized platform facts.
 - [`DEVICE-PORTAL-ANON-EXPOSURE.md`](DEVICE-PORTAL-ANON-EXPOSURE.md) — redacted anonymous WDP endpoint/data map.
+- [`HOST-MODULE-REVIEW.md`](HOST-MODULE-REVIEW.md) — steam_client/ui/swapchain static review.
 - [`GUEST-BRIDGE-REVIEW.md`](GUEST-BRIDGE-REVIEW.md) — guest/bridge trust-boundary static review.
 - [`DISCLOSURE-TEMPLATE.md`](DISCLOSURE-TEMPLATE.md) — responsible disclosure template.
 - [`DISCLOSURE-PLAYBOOK.md`](DISCLOSURE-PLAYBOOK.md) — disclosure triage/playbook.
